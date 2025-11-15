@@ -13,12 +13,6 @@
     height: 100%;
     background: linear-gradient(45deg, #000428, #004e92);
     z-index: -1;
-    animation: bgChange 20s ease infinite;
-}
-
-@keyframes bgChange {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(180deg); }
 }
 
 body {
@@ -34,42 +28,24 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: containerAppear 1s ease;
-}
-
-@keyframes containerAppear {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 header {
     text-align: center;
-    padding: 50px 20px;
+    padding: 40px 20px;
     background: rgba(37, 99, 235, 0.3);
 }
 
 .title {
-    font-size: 5rem; /* بزرگتر */
+    font-size: 3.5rem;
     font-weight: 900;
-    margin-bottom: 15px;
-    text-shadow: 0 0 20px #3b82f6;
-    animation: titleFloat 4s ease-in-out infinite; /* تکون ملایم */
-}
-
-@keyframes titleFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #3b82f6;
 }
 
 .tagline {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     opacity: 0.9;
-    animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 0.9; }
 }
 
 main {
@@ -80,12 +56,6 @@ main {
     text-align: center;
     margin-bottom: 25px;
     font-size: 1.8rem;
-    animation: slideIn 1s ease;
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-30px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
 }
 
 .services-grid {
@@ -101,29 +71,17 @@ main {
     border-radius: 15px;
     padding: 20px 10px;
     text-align: center;
-    transition: all 0.3s ease;
-    animation: itemAppear 1s ease;
+    transition: transform 0.3s ease;
 }
 
 .service-item:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-@keyframes itemAppear {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
 }
 
 .service-item i {
     font-size: 2.5rem;
     color: #3b82f6;
     margin-bottom: 10px;
-    transition: transform 0.3s ease;
-}
-
-.service-item:hover i {
-    transform: scale(1.2);
 }
 
 .service-item p {
@@ -153,27 +111,11 @@ main {
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
-    transition: all 0.3s ease;
-    animation: btnBounce 1s ease;
-}
-
-@keyframes btnBounce {
-    0% { transform: scale(0.5); opacity: 0; }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
+    transition: transform 0.3s ease;
 }
 
 .contact-btn i {
     margin-left: 10px;
-    transition: transform 0.3s ease;
-}
-
-.contact-btn:hover {
-    transform: scale(1.05);
-}
-
-.contact-btn:hover i {
-    transform: translateX(-5px);
 }
 
 .telegram {
@@ -186,12 +128,15 @@ main {
     color: white;
 }
 
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
 footer {
     text-align: center;
     padding: 20px;
     background: rgba(0, 0, 0, 0.2);
     opacity: 0.8;
-    animation: fadeIn 2s ease;
 }
 
 @media (max-width: 600px) {
@@ -200,7 +145,7 @@ footer {
     }
     
     .title {
-        font-size: 3.5rem; /* کمی کوچکتر در موبایل */
+        font-size: 2.5rem;
     }
     
     main {
