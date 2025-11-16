@@ -236,38 +236,56 @@
             margin-bottom: 10px;
         }
         
-        /* دکمه واتساپ */
-        .whatsapp-section {
+        /* دکمه‌های پیام‌رسان */
+        .messenger-section {
             text-align: center;
             margin-top: 30px;
         }
         
-        .whatsapp-btn {
+        .messenger-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .messenger-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 20px 40px;
+            padding: 18px 30px;
             border-radius: 15px;
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: bold;
             display: inline-block;
-            margin: 15px;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
             cursor: pointer;
+            flex: 1;
+            min-width: 200px;
         }
         
-        .whatsapp-btn:hover {
+        .messenger-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
         }
         
-        .whatsapp-btn:disabled {
+        .messenger-btn:disabled {
             background: #6b7280;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+        
+        .messenger-btn.bale {
+            background: linear-gradient(135deg, #34b7f1, #128C7E);
+            box-shadow: 0 8px 20px rgba(52, 183, 241, 0.3);
+        }
+        
+        .messenger-btn.bale:hover {
+            box-shadow: 0 12px 30px rgba(52, 183, 241, 0.5);
         }
         
         .selected-package-info {
@@ -364,6 +382,14 @@
             .preview-image {
                 max-width: 250px;
             }
+            
+            .messenger-buttons {
+                flex-direction: column;
+            }
+            
+            .messenger-btn {
+                min-width: auto;
+            }
         }
     </style>
 </head>
@@ -373,7 +399,7 @@
         <div class="header">
             <div class="vpn-icon">🛡️</div>
             <h1>فروش فیلترشکن</h1>
-            <p>خرید آسان از طریق واتساپ - بدون نیاز به فیلترشکن</p>
+            <p>خرید آسان از طریق واتساپ و بله - بدون نیاز به فیلترشکن</p>
         </div>
         
         <!-- مراحل خرید -->
@@ -430,17 +456,25 @@
                 </div>
             </div>
             
-            <!-- مرحله ۴: ارسال به واتساپ -->
+            <!-- مرحله ۴: ارسال به پیام‌رسان -->
             <div class="step">
                 <div class="step-number">۴</div>
-                <div class="step-title">📱 ارسال رسید از طریق واتساپ</div>
-                <div class="whatsapp-section">
-                    <p>پس از آپلود عکس رسید، روی دکمه زیر کلیک کنید</p>
-                    <button id="whatsappBtn" class="whatsapp-btn" onclick="sendToWhatsApp()" disabled>
-                        📱 ارسال رسید به واتساپ
-                    </button>
+                <div class="step-title">📱 ارسال رسید از طریق پیام‌رسان</div>
+                <div class="messenger-section">
+                    <p>پس از آپلود عکس رسید، یکی از روش‌های زیر را انتخاب کنید:</p>
+                    
+                    <div class="messenger-buttons">
+                        <button id="whatsappBtn" class="messenger-btn" onclick="sendToWhatsApp()" disabled>
+                            📱 واتساپ
+                        </button>
+                        <button id="baleBtn" class="messenger-btn bale" onclick="sendToBale()" disabled>
+                            🚀 بله
+                        </button>
+                    </div>
+                    
                     <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
-                        شماره واتساپ: ۰۹۲۲۴۰۴۴۸۴۲
+                        <div>واتساپ: ۰۹۲۲۴۰۴۴۸۴۲</div>
+                        <div>بله: ۰۹۲۲۴۰۴۴۸۴۲</div>
                     </div>
                 </div>
             </div>
@@ -449,8 +483,8 @@
         <a href="index.html" class="back-btn">← بازگشت به صفحه اصلی</a>
     </div>
 
-    <!-- پاپ‌آپ راهنمای ارسال -->
-    <div class="instructions-popup" id="instructionsPopup">
+    <!-- پاپ‌آپ راهنمای واتساپ -->
+    <div class="instructions-popup" id="whatsappInstructions">
         <div class="instructions-content">
             <h3>📋 راهنمای ارسال به واتساپ</h3>
             <ol>
@@ -460,13 +494,13 @@
             </ol>
             
             <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: right;">
-                <div id="messageToCopy" style="white-space: pre-wrap;"></div>
-                <button onclick="copyMessage()" class="upload-btn" style="margin-top: 10px; background: #25D366;">
+                <div id="whatsappMessage" style="white-space: pre-wrap;"></div>
+                <button onclick="copyWhatsAppMessage()" class="upload-btn" style="margin-top: 10px; background: #25D366;">
                     📋 کپی پیام
                 </button>
             </div>
             
-            <button class="close-btn" onclick="closeInstructions()">بستن</button>
+            <button class="close-btn" onclick="closeWhatsAppInstructions()">بستن</button>
         </div>
     </div>
 
@@ -547,22 +581,15 @@
                 }
                 reader.readAsDataURL(file);
                 
-                // فعال کردن دکمه واتساپ
+                // فعال کردن دکمه‌ها
                 document.getElementById('whatsappBtn').disabled = false;
+                document.getElementById('baleBtn').disabled = false;
             }
         });
 
         // ارسال به واتساپ
         function sendToWhatsApp() {
-            if (!selectedPackage) {
-                alert('لطفاً ابتدا یک بسته انتخاب کنید');
-                return;
-            }
-            
-            if (!receiptFile) {
-                alert('لطفاً عکس رسید را آپلود کنید');
-                return;
-            }
+            if (!selectedPackage || !receiptFile) return;
             
             const message = `سلام! 👋
 
@@ -577,16 +604,34 @@
 با تشکر`;
             
             // نمایش راهنمای ارسال
-            document.getElementById('messageToCopy').textContent = message;
-            document.getElementById('instructionsPopup').style.display = 'flex';
-            
-            // کپی خودکار پیام
-            copyMessage();
+            document.getElementById('whatsappMessage').textContent = message;
+            document.getElementById('whatsappInstructions').style.display = 'flex';
         }
 
-        // کپی پیام
-        function copyMessage() {
-            const message = document.getElementById('messageToCopy').textContent;
+        // ارسال به بله
+        function sendToBale() {
+            if (!selectedPackage || !receiptFile) return;
+            
+            const message = `سلام! 👋
+
+📦 **سفارش فیلترشکن**
+• بسته: ${selectedPackage.size}
+• مبلغ: ${selectedPackage.price} تومان  
+• مدت: ${selectedPackage.duration}
+
+✅ رسید پرداخت ضمیمه شده است.
+لطفاً فیلترشکن را برایم ارسال کنید.
+
+با تشکر`;
+            
+            // ارسال مستقیم به بله
+            const baleUrl = `https://web.bale.ai/share?text=${encodeURIComponent(message)}`;
+            window.open(baleUrl, '_blank');
+        }
+
+        // کپی پیام واتساپ
+        function copyWhatsAppMessage() {
+            const message = document.getElementById('whatsappMessage').textContent;
             navigator.clipboard.writeText(message).then(() => {
                 alert('✅ پیام کپی شد! حالا در واتساپ پیست کنید.');
                 
@@ -599,9 +644,9 @@
             });
         }
 
-        // بستن راهنما
-        function closeInstructions() {
-            document.getElementById('instructionsPopup').style.display = 'none';
+        // بستن راهنمای واتساپ
+        function closeWhatsAppInstructions() {
+            document.getElementById('whatsappInstructions').style.display = 'none';
         }
 
         // راه‌اندازی اولیه
