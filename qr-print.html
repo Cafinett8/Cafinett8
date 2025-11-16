@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرینت QR کد - کافی نت</title>
+    <style>
+        /* تنظیمات پرینت */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'B Titr', 'Vazir', Tahoma, sans-serif;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .print-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            border: 3px solid #3b82f6;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .main-title {
+            font-family: 'B Titr', Tahoma, sans-serif;
+            font-size: 3.5rem;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .sub-title {
+            font-family: 'Vazir', Tahoma, sans-serif;
+            font-size: 1.8rem;
+            color: #3b82f6;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-family: 'Vazir', Tahoma, sans-serif;
+            font-size: 1.3rem;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .qr-section {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 3px solid #1e3c72;
+            display: inline-block;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.2);
+        }
+
+        .qr-title {
+            font-family: 'B Titr', Tahoma, sans-serif;
+            font-size: 1.8rem;
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+
+        .qr-image {
+            width: 280px;
+            height: 280px;
+            border: 2px solid #1e3c72;
+            border-radius: 15px;
+            padding: 15px;
+            background: white;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .contact-title {
+            font-family: 'B Titr', Tahoma, sans-serif;
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #60a5fa;
+        }
+
+        .contact-text {
+            font-family: 'Vazir', Tahoma, sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .website-section {
+            background: #3b82f6;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .website-title {
+            font-family: 'B Titr', Tahoma, sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .website-url {
+            font-family: 'Vazir', Tahoma, sans-serif;
+            direction: ltr;
+            background: white;
+            color: #1e3c72;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #64748b;
+            font-family: 'Vazir', Tahoma, sans-serif;
+            font-size: 1.1rem;
+        }
+
+        /* برای نمایش بهتر در پرینت */
+        @media screen and (max-width: 600px) {
+            .print-card {
+                padding: 30px 20px;
+            }
+            .main-title {
+                font-size: 2.8rem;
+            }
+            .qr-image {
+                width: 250px;
+                height: 250px;
+            }
+            .contact-methods {
+                gap: 20px;
+            }
+        }
+    </style>
+    <!-- لینک فونت‌ها -->
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/B-Titr/BTitr.css">
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="print-card">
+        <!-- هدر -->
+        <div class="header">
+            <h1 class="main-title">کافی نت</h1>
+            <h2 class="sub-title">خدمات اینترنتی و کامپیوتری</h2>
+            <p class="description">برای دسترسی سریع به خدمات ما QR کد را اسکن کنید</p>
+        </div>
+
+        <!-- کیوآر کد -->
+        <div class="qr-section">
+            <h3 class="qr-title">اسکن کنید</h3>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=https://cafinett8.github.io&color=1e3c72&bgcolor=ffffff&format=png&margin=10" 
+                 alt="QR Code کافی نت" 
+                 class="qr-image">
+        </div>
+
+        <!-- ارتباط با ما -->
+        <div class="contact-section">
+            <h3 class="contact-title">ارتباط با ما</h3>
+            <div class="contact-methods">
+                <div class="contact-item">
