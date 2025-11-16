@@ -38,9 +38,22 @@
         }
         
         .vpn-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            color: #93c5fd;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(0, 204, 255, 0.5));
+            }
         }
         
         .header h1 {
@@ -48,6 +61,7 @@
             font-size: 2.8rem;
             margin-bottom: 10px;
             color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .header p {
@@ -83,6 +97,7 @@
             right: -10px;
             top: -10px;
             font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
         }
         
         .step-title {
@@ -121,6 +136,7 @@
             background: rgba(37, 211, 102, 0.3);
             border-color: #25D366;
             transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
         
         .package-size {
@@ -132,6 +148,7 @@
         .package-price {
             font-size: 1.1rem;
             color: #93c5fd;
+            font-weight: bold;
         }
         
         /* کارت بانکی */
@@ -144,48 +161,75 @@
             border: 2px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             position: relative;
+            overflow: hidden;
+        }
+        
+        .bank-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
         }
         
         .bank-logo {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+        
+        .card-number-container {
+            direction: ltr;
+            text-align: center;
+            margin: 20px 0;
         }
         
         .card-number {
-            font-family: monospace;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
             background: rgba(255,255,255,0.2);
-            padding: 12px;
-            border-radius: 10px;
-            direction: ltr;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
             cursor: pointer;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: bold;
+            direction: ltr;
+            unicode-bidi: plaintext;
         }
         
         .card-number:hover {
             background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
         }
         
         .card-owner {
             font-size: 1.2rem;
             margin-bottom: 10px;
+            font-weight: bold;
         }
         
         .copy-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: bold;
         }
         
         .copy-btn:hover {
             background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
         /* دکمه واتساپ */
@@ -197,14 +241,14 @@
         .whatsapp-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 20px 40px;
+            padding: 18px 35px;
             border-radius: 15px;
             text-decoration: none;
             font-size: 1.3rem;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin: 15px;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -244,10 +288,14 @@
             text-align: center;
             width: 100%;
             padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
         
         .back-btn:hover {
             color: #ffffff;
+            background: rgba(255,255,255,0.2);
         }
         
         @media (max-width: 768px) {
@@ -258,14 +306,26 @@
             
             .pricing-table {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
             }
             
             .card-number {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+                padding: 12px;
             }
             
             .header h1 {
                 font-size: 2.2rem;
+            }
+            
+            .vpn-icon {
+                font-size: 4rem;
+            }
+            
+            .whatsapp-btn {
+                padding: 15px 25px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -274,9 +334,9 @@
     <div class="container">
         <!-- هدر -->
         <div class="header">
-            <div class="vpn-icon">🛡️</div>
-            <h1>فروش فیلترشکن</h1>
-            <p>خرید آسان از طریق واتساپ - بدون نیاز به فیلترشکن</p>
+            <div class="vpn-icon">🔒</div>
+            <h1>خرید فیلترشکن پرسرعت</h1>
+            <p>اتصال امن و بدون محدودیت به اینترنت جهانی</p>
         </div>
         
         <!-- مراحل خرید -->
@@ -284,7 +344,7 @@
             <!-- مرحله ۱: انتخاب بسته -->
             <div class="step">
                 <div class="step-number">۱</div>
-                <div class="step-title">📦 انتخاب بسته مورد نظر</div>
+                <div class="step-title">📦 انتخاب بسته اینترنتی</div>
                 <div class="pricing-table" id="pricingTable">
                     <!-- بسته‌ها با JavaScript پر می‌شوند -->
                 </div>
@@ -299,9 +359,11 @@
                 <div class="step-title">💳 واریز مبلغ به حساب بانکی</div>
                 <div class="bank-card">
                     <div class="bank-logo">🏦</div>
-                    <div>بانک سامان</div>
-                    <div class="card-number" id="cardNumber" onclick="copyCardNumber()">
-                        6219 8619 8734 8090
+                    <div style="font-size: 1.3rem; margin-bottom: 10px;">بانک سامان</div>
+                    <div class="card-number-container">
+                        <div class="card-number" id="cardNumber" onclick="copyCardNumber()">
+                            6219-8619-8734-8090
+                        </div>
                     </div>
                     <div class="card-owner">بنام: امیر محمد حضراتی</div>
                     <button class="copy-btn" onclick="copyCardNumber()">
@@ -315,9 +377,9 @@
                 <div class="step-number">۳</div>
                 <div class="step-title">📱 ارسال درخواست خرید</div>
                 <div class="whatsapp-section">
-                    <p>پس از واریز مبلغ، روی دکمه زیر کلیک کنید</p>
+                    <p>پس از واریز، روی دکمه زیر کلیک کنید</p>
                     <button id="whatsappBtn" class="whatsapp-btn" onclick="sendToWhatsApp()">
-                        <span>📱</span>
+                        <span style="font-size: 1.5rem;">📱</span>
                         ارسال به واتساپ
                     </button>
                     <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
@@ -351,7 +413,7 @@
                 button.innerHTML = `
                     <div class="package-size">${pkg.size}</div>
                     <div class="package-price">${pkg.price} تومان</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">${pkg.duration}</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">${pkg.duration}</div>
                 `;
                 
                 button.addEventListener('click', () => selectPackage(index));
@@ -384,7 +446,14 @@
             navigator.clipboard.writeText(cardNumber).then(() => {
                 alert('✅ شماره کارت کپی شد: ' + cardNumber);
             }).catch(() => {
-                alert('❌ خطا در کپی کردن شماره کارت');
+                // روش جایگزین برای موبایل
+                const tempInput = document.createElement('input');
+                tempInput.value = cardNumber;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                alert('✅ شماره کارت کپی شد: ' + cardNumber);
             });
         }
 
