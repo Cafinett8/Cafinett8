@@ -40,33 +40,51 @@
         .vpn-icon {
             font-size: 5rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #00ff88, #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: bounce 2s infinite;
         }
         
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
             }
-            to {
-                filter: drop-shadow(0 0 30px rgba(0, 204, 255, 0.5));
+            50% {
+                transform: translateY(-10px);
             }
         }
         
         .header h1 {
             font-family: 'B Titr', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             color: #ffffff;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .header p {
             font-size: 1.2rem;
             opacity: 0.9;
+        }
+        
+        .purchase-count {
+            background: rgba(37, 211, 102, 0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            display: inline-block;
+            font-size: 1.1rem;
+            border: 1px solid rgba(37, 211, 102, 0.5);
         }
         
         /* مراحل خرید */
@@ -176,7 +194,7 @@
         }
         
         .bank-logo {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 15px;
             filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
         }
@@ -189,7 +207,7 @@
         
         .card-number {
             font-family: 'Courier New', monospace;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             letter-spacing: 3px;
             background: rgba(255,255,255,0.2);
             padding: 15px;
@@ -209,7 +227,7 @@
         }
         
         .card-owner {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 10px;
             font-weight: bold;
         }
@@ -218,12 +236,12 @@
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 25px;
+            border-radius: 10px;
             cursor: pointer;
             margin-top: 15px;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
         
@@ -241,14 +259,14 @@
         .whatsapp-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
-            padding: 18px 35px;
+            padding: 20px 40px;
             border-radius: 15px;
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             margin: 15px;
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -266,6 +284,10 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+        }
+        
+        .whatsapp-icon {
+            font-size: 2rem;
         }
         
         .selected-package-info {
@@ -310,7 +332,7 @@
             }
             
             .card-number {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
                 letter-spacing: 2px;
                 padding: 12px;
             }
@@ -324,8 +346,12 @@
             }
             
             .whatsapp-btn {
-                padding: 15px 25px;
+                padding: 18px 30px;
                 font-size: 1.2rem;
+            }
+            
+            .bank-logo {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -334,9 +360,10 @@
     <div class="container">
         <!-- هدر -->
         <div class="header">
-            <div class="vpn-icon">🔒</div>
-            <h1>خرید فیلترشکن پرسرعت</h1>
-            <p>اتصال امن و بدون محدودیت به اینترنت جهانی</p>
+            <div class="vpn-icon">🚀</div>
+            <h1>خرید فیلترشکن</h1>
+            <p>اتصال امن و پرسرعت به اینترنت جهانی</p>
+            <div class="purchase-count">📊 بیش از ۵۰۰+ خرید موفق</div>
         </div>
         
         <!-- مراحل خرید -->
@@ -358,10 +385,13 @@
                 <div class="step-number">۲</div>
                 <div class="step-title">💳 واریز مبلغ به حساب بانکی</div>
                 <div class="bank-card">
-                    <div class="bank-logo">🏦</div>
-                    <div style="font-size: 1.3rem; margin-bottom: 10px;">بانک سامان</div>
+                    <div class="bank-logo">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9IiMwMDQ2ODciLz4KPHBhdGggZD0iTTMyIDE2QzIzLjE2MzQgMTYgMTYgMjMuMTYzNCAxNiAzMkMxNiA0MC44MzY2IDIzLjE2MzQgNDggMzIgNDhDNDAuODM2NiA0OCA0OCA0MC44MzY2IDQ4IDMyQzQ4IDIzLjE2MzQgNDAuODM2NiAxNiAzMiAxNloiIGZpbGw9IiMwMDZDRUMiLz4KPHBhdGggZD0iTTM2IDI4SDI4VjM2SDM2VjI4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTI0IDI4SDE2VjM2SDI0VjI4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ4IDI4SDQwVjM2SDQ4VjI4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+" 
+                             alt="سامان" style="width: 60px; height: 60px; filter: brightness(0) invert(1);">
+                    </div>
+                    <div style="font-size: 1.4rem; margin-bottom: 10px; font-weight: bold;">بانک سامان</div>
                     <div class="card-number-container">
-                        <div class="card-number" id="cardNumber" onclick="copyCardNumber()">
+                        <div class="card-number" id="cardNumber">
                             6219-8619-8734-8090
                         </div>
                     </div>
@@ -379,7 +409,7 @@
                 <div class="whatsapp-section">
                     <p>پس از واریز، روی دکمه زیر کلیک کنید</p>
                     <button id="whatsappBtn" class="whatsapp-btn" onclick="sendToWhatsApp()">
-                        <span style="font-size: 1.5rem;">📱</span>
+                        <span class="whatsapp-icon">💬</span>
                         ارسال به واتساپ
                     </button>
                     <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8;">
@@ -443,18 +473,36 @@
         // کپی شماره کارت
         function copyCardNumber() {
             const cardNumber = "6219861987348090";
-            navigator.clipboard.writeText(cardNumber).then(() => {
-                alert('✅ شماره کارت کپی شد: ' + cardNumber);
-            }).catch(() => {
-                // روش جایگزین برای موبایل
-                const tempInput = document.createElement('input');
-                tempInput.value = cardNumber;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                alert('✅ شماره کارت کپی شد: ' + cardNumber);
-            });
+            
+            // ایجاد المان موقت برای کپی
+            const tempInput = document.createElement('input');
+            tempInput.value = cardNumber;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999); // برای موبایل
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    alert('✅ شماره کارت کپی شد: ' + cardNumber);
+                } else {
+                    // روش جایگزین
+                    navigator.clipboard.writeText(cardNumber).then(() => {
+                        alert('✅ شماره کارت کپی شد: ' + cardNumber);
+                    }).catch(() => {
+                        alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + cardNumber);
+                    });
+                }
+            } catch (err) {
+                // روش جایگزین
+                navigator.clipboard.writeText(cardNumber).then(() => {
+                    alert('✅ شماره کارت کپی شد: ' + cardNumber);
+                }).catch(() => {
+                    alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + cardNumber);
+                });
+            }
+            
+            document.body.removeChild(tempInput);
         }
 
         // ارسال به واتساپ
