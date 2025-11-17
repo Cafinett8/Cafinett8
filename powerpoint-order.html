@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفارش پاورپوینت | کافی نت</title>
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fdbb2d;
+            text-shadow: 0 0 10px rgba(253, 187, 45, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: #fff;
+            transform: translateX(-5px);
+        }
+        
+        .order-form {
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #fdbb2d;
+            box-shadow: 0 0 10px rgba(253, 187, 45, 0.3);
+        }
+        
+        .package-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .package-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .package-option:hover {
+            border-color: #fdbb2d;
+            transform: translateY(-5px);
+        }
+        
+        .package-option.selected {
+            border-color: #fdbb2d;
+            background: rgba(253, 187, 45, 0.1);
+        }
+        
+        .package-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .package-price {
+            font-size: 1.1rem;
+            color: #fdbb2d;
+        }
+        
+        .slides-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .slides-count {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fdbb2d;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .total-price {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(253, 187, 45, 0.2);
+            border-radius: 10px;
+            border: 1px solid #fdbb2d;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: #fdbb2d;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 160px;
+            justify-content: center;
+        }
+        
+        .whatsapp {
+            background: #25D366;
+        }
+        
+        .telegram {
+            background: #0088cc;
+        }
+        
+        .phone {
+            background: #fdbb2d;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 600px) {
+            .package-options {
+                flex-direction: column;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </a>
+        
+        <header>
+            <h1>سفارش پاورپوینت</h1>
+            <p class="tagline">ارائه با کیفیت ترین ارائه‌های پاورپوینت</p>
+        </header>
+        
+        <section class="order-form">
+            <div class="form-group">
+                <label for="topic">موضوع پاورپوینت:</label>
+                <input type="text" id="topic" placeholder="موضوع ارائه خود را وارد کنید">
+            </div>
+            
+            <div class="form-group">
+                <label>نوع پاورپوینت:</label>
+                <div class="package-options">
+                    <div class="package-option" data-price="10000">
+                        <div class="package-name">ساده</div>
+                        <div class="package-price">هر اسلاید ۱۰,۰۰۰ تومان</div>
+                        <p>طراحی ساده و تمیز</p>
+                    </div>
+                    <div class="package-option" data-price="20000">
+                        <div class="package-name">حرفه‌ای</div>
+                        <div class="package-price">هر اسلاید ۲۰,۰۰۰ تومان</div>
+                        <p>طراحی حرفه‌ای با انیمیشن</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="slides">تعداد اسلایدها:</label>
+                <div class="slides-info">
+                    <input type="range" id="slides" min="5" max="50" value="10" class="slider">
+                    <span class="slides-count">10</span>
+                    <span>اسلاید</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">توضیحات اضافی (اختیاری):</label>
+                <textarea id="notes" rows="4" placeholder="هر توضیح اضافی که مد نظر دارید..."></textarea>
+            </div>
+            
+            <div class="total-price">
+                قیمت کل: <span id="total-price">100,000</span> تومان
+            </div>
+        </section>
+        
+        <section class="contact-info">
+            <h3 class="contact-title">برای ثبت سفارش با ما تماس بگیرید</h3>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/989224044842" target="_blank" class="contact-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>واتساپ</span>
+                </a>
+                <a href="https://t.me/Cafinett8" target="_blank" class="contact-btn telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>تلگرام</span>
+                </a>
+                <a href="tel:09224044842" class="contact-btn phone">
+                    <i class="fas fa-phone"></i>
+                    <span>تماس</span>
+                </a>
+            </div>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>09224044842</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>@Cafinett8</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>09224044842</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // انتخاب نوع پاورپوینت
+        const packageOptions = document.querySelectorAll('.package-option');
+        let selectedPackage = document.querySelector('.package-option');
+        selectedPackage.classList.add('selected');
+        let packagePrice = parseInt(selectedPackage.getAttribute('data-price'));
+        
+        packageOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                packageOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedPackage = option;
+                packagePrice = parseInt(option.getAttribute('data-price'));
+                updateTotalPrice();
+            });
+        });
+        
+        // به روزرسانی تعداد اسلایدها و قیمت
+        const slidesInput = document.getElementById('slides');
+        const slidesCount = document.querySelector('.slides-count');
+        const totalPriceElement = document.getElementById('total-price');
+        
+        function updateTotalPrice() {
+            const slides = parseInt(slidesInput.value);
+            const totalPrice = slides * packagePrice;
+            totalPriceElement.textContent = totalPrice.toLocaleString();
+        }
+        
+        slidesInput.addEventListener('input', () => {
+            slidesCount.textContent = slidesInput.value;
+            updateTotalPrice();
+        });
+        
+        // مقداردهی اولیه
+        updateTotalPrice();
+    </script>
+</body>
+</html>
