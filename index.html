@@ -9,194 +9,200 @@
     <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* استایل‌های جدید برای خدمات */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .service-item {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            padding: 40px 25px;
-            text-align: center;
-            color: white;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-        
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #fdbb2d, #ff6b6b);
-        }
-        
-        .service-item:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: #fdbb2d;
-        }
-        
-        .service-item i {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: block;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-        }
-        
-        .service-item:hover i {
-            transform: scale(1.2) rotate(5deg);
-            color: #fdbb2d;
-        }
-        
-        .service-item p {
-            font-family: 'BTitr', sans-serif;
-            font-size: 1.4rem;
+        * {
             margin: 0;
-            font-weight: bold;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        
-        .service-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: all 0.3s ease;
-        }
-        
-        .service-link:hover {
-            color: #fdbb2d;
-        }
-        
-        /* استایل‌های عمومی */
-        .neon-title {
-            font-family: 'BTitr', sans-serif;
-            font-size: 4rem;
-            text-align: center;
-            color: #fff;
-            text-shadow: 
-                0 0 10px #fdbb2d,
-                0 0 20px #fdbb2d,
-                0 0 40px #fdbb2d,
-                0 0 80px #fdbb2d;
-            animation: neonGlow 2s ease-in-out infinite alternate;
-            margin-bottom: 10px;
-        }
-        
-        @keyframes neonGlow {
-            from {
-                text-shadow: 
-                    0 0 10px #fdbb2d,
-                    0 0 20px #fdbb2d,
-                    0 0 30px #fdbb2d,
-                    0 0 40px #fdbb2d;
-            }
-            to {
-                text-shadow: 
-                    0 0 5px #fdbb2d,
-                    0 0 10px #fdbb2d,
-                    0 0 15px #fdbb2d,
-                    0 0 20px #fdbb2d;
-            }
-        }
-        
-        .tagline {
-            font-family: 'Vazir', sans-serif;
-            font-size: 1.3rem;
-            text-align: center;
-            color: #ccc;
-            margin-bottom: 50px;
-        }
-        
-        section h2 {
-            font-family: 'BTitr', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            color: #fdbb2d;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(253, 187, 45, 0.3);
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: #fff;
             min-height: 100vh;
-            padding: 20px;
+            font-family: 'Vazir', sans-serif;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
         
-        /* استایل‌های بخش تماس */
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .neon-title {
+            font-family: 'BTitr', sans-serif;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #00f,
+                0 0 20px #00f,
+                0 0 40px #00f,
+                0 0 80px #00f;
+            margin-bottom: 10px;
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neonGlow {
+            from {
+                text-shadow: 
+                    0 0 10px #00f,
+                    0 0 20px #00f,
+                    0 0 30px #00f,
+                    0 0 40px #00f;
+            }
+            to {
+                text-shadow: 
+                    0 0 5px #00f,
+                    0 0 10px #00f,
+                    0 0 15px #00f,
+                    0 0 20px #00f;
+            }
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        .services {
+            padding: 50px 0;
+        }
+        
+        .services h2 {
+            text-align: center;
+            font-family: 'BTitr', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #fdbb2d;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .service-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            border-color: #fdbb2d;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .service-item i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+            transition: all 0.3s ease;
+        }
+        
+        .service-item:hover i {
+            transform: scale(1.2);
+            color: #fff;
+        }
+        
+        .service-item p {
+            font-family: 'BTitr', sans-serif;
+            font-size: 1.4rem;
+            margin: 0;
+        }
+        
+        .service-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .service-link:hover {
+            color: #fdbb2d;
+        }
+        
+        .contact {
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-family: 'BTitr', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fdbb2d;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
         .contact-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 30px;
         }
         
         .contact-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: bold;
-            font-family: 'Vazir', sans-serif;
             transition: all 0.3s ease;
-            min-width: 180px;
+            min-width: 160px;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .telegram {
-            background: linear-gradient(45deg, #0088cc, #00aced);
+            background: #0088cc;
         }
         
         .whatsapp {
-            background: linear-gradient(45deg, #25D366, #128C7E);
+            background: #25D366;
         }
         
         .phone {
-            background: linear-gradient(45deg, #fdbb2d, #ff6b6b);
+            background: #fdbb2d;
         }
         
         .contact-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
         
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 20px;
+            padding: 30px 0;
+            margin-top: 50px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
-            font-family: 'Vazir', sans-serif;
         }
         
         @media (max-width: 768px) {
+            .neon-title {
+                font-size: 2.5rem;
+            }
+            
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-            }
-            
-            .neon-title {
-                font-size: 2.5rem;
             }
             
             .contact-buttons {
@@ -230,7 +236,7 @@
                     
                     <div class="service-item">
                         <i class="fas fa-file-word"></i>
-                        <p>تحقیق دانشجویی</p>
+                        <p><a href="research-order.html" class="service-link">تحقیق دانشجویی</a></p>
                     </div>
                     
                     <div class="service-item">
