@@ -305,6 +305,48 @@
             color: var(--night-text);
         }
 
+        /* آیکون اخبار */
+        .news-footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .news-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-family: 'Vazir', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .night-mode .news-link {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .news-link:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .night-mode .news-link:hover {
+            background: rgba(59, 130, 246, 0.25);
+        }
+
         /* رسپانسیو */
         @media (max-width: 768px) {
             .container {
@@ -341,6 +383,11 @@
                 gap: 12px;
                 max-width: 250px;
             }
+
+            .news-link {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -350,6 +397,11 @@
             
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .news-link {
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -407,6 +459,14 @@
         <footer>
             <p>© 2023 کافی نت. تمامی حقوق محفوظ است.</p>
         </footer>
+    </div>
+
+    <!-- آیکون اخبار -->
+    <div class="news-footer">
+        <a href="news.html" class="news-link">
+            <i class="fas fa-newspaper"></i>
+            <span>اخبار کافی نت</span>
+        </a>
     </div>
 
     <script>
