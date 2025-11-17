@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفارش تحقیق دانشجویی | کافی نت</title>
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/B-Titr/BTitr.css">
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazir', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 2px solid #2a5298;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-family: 'BTitr', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .word-logo {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2a5298;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border: 2px solid #2a5298;
+            border-radius: 8px;
+        }
+        
+        .back-btn:hover {
+            background: #2a5298;
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        .order-form {
+            margin-bottom: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+            box-shadow: 0 0 10px rgba(42, 82, 152, 0.2);
+            background: white;
+        }
+        
+        .topics-container {
+            margin-top: 10px;
+        }
+        
+        .topic-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .topic-input input {
+            flex: 1;
+        }
+        
+        .add-topic {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-topic:hover {
+            background: #1e3c72;
+            transform: scale(1.05);
+        }
+        
+        .remove-topic {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .remove-topic:hover {
+            background: #c82333;
+        }
+        
+        .pages-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .pages-count {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2a5298;
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .price-info {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #1e3c72;
+        }
+        
+        .price {
+            font-family: 'BTitr', sans-serif;
+            font-size: 1.8rem;
+            color: #fdbb2d;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .total-price {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 25px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #fdbb2d, #ff6b6b);
+            border-radius: 10px;
+            border: 2px solid #fdbb2d;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .send-order {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'BTitr', sans-serif;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .send-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #2a5298, #1e3c72);
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 2px solid #2a5298;
+        }
+        
+        .contact-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 160px;
+            justify-content: center;
+        }
+        
+        .whatsapp {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+        }
+        
+        .telegram {
+            background: linear-gradient(45deg, #0088cc, #00aced);
+        }
+        
+        .phone {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 8px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 600px) {
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .word-logo {
+                font-size: 3rem;
+            }
+            
+            .topic-input {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </a>
+        
+        <header>
+            <div class="word-logo">
+                <i class="fas fa-file-word"></i>
+            </div>
+            <h1>سفارش تحقیق دانشجویی</h1>
+            <p class="tagline">تحقیقات با کیفیت و استاندارد دانشگاهی</p>
+        </header>
+        
+        <section class="order-form">
+            <div class="form-group">
+                <label for="topics">موضوعات تحقیق (می‌توانید چند موضوع اضافه کنید):</label>
+                <div class="topics-container" id="topics-container">
+                    <div class="topic-input">
+                        <input type="text" placeholder="موضوع تحقیق را وارد کنید" class="topic-field">
+                        <button type="button" class="remove-topic" onclick="removeTopic(this)" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="button" class="add-topic" onclick="addTopic()">
+                    <i class="fas fa-plus"></i> افزودن موضوع دیگر
+                </button>
+            </div>
+            
+            <div class="form-group">
+                <label for="pages">تعداد صفحات:</label>
+                <div class="pages-info">
+                    <input type="range" id="pages" min="1" max="100" value="10" class="slider">
+                    <span class="pages-count">10</span>
+                    <span>صفحه</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="research-type">نوع تحقیق:</label>
+                <select id="research-type">
+                    <option value="word">تحقیق ورد (عادی)</option>
+                    <option value="printed">تحقیق چاپ شده</option>
+                    <option value="premium">تحقیق ویژه (با منابع بیشتر)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes">توضیحات اضافی (اختیاری):</label>
+                <textarea id="notes" rows="4" placeholder="هر توضیح اضافی که مد نظر دارید..."></textarea>
+            </div>
+            
+            <div class="price-info">
+                <p>قیمت پایه: <span class="price">۱۰,۰۰۰ تومان</span> برای هر صفحه</p>
+                <p>تحقیق برگه‌ای - کیفیت عالی</p>
+            </div>
+            
+            <div class="total-price">
+                قیمت کل: <span id="total-price">100,000</span> تومان
+            </div>
+            
+            <div class="send-order">
+                <button class="send-btn" onclick="sendOrder()">
+                    <i class="fas fa-paper-plane"></i>
+                    ارسال سفارش
+                </button>
+            </div>
+        </section>
+        
+        <section class="contact-info">
+            <h3 class="contact-title">برای ثبت سفارش با ما تماس بگیرید</h3>
+            
+            <div class="contact-buttons">
+                <a href="#" id="whatsapp-link" class="contact-btn whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>واتساپ</span>
+                </a>
+                <a href="#" id="telegram-link" class="contact-btn telegram" target="_blank">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>تلگرام</span>
+                </a>
+                <a href="tel:09224044842" class="contact-btn phone">
+                    <i class="fas fa-phone"></i>
+                    <span>تماس</span>
+                </a>
+            </div>
+            
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>09224044842</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>Cafinett8@</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>09224044842</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // مدیریت موضوعات
+        function addTopic() {
+            const container = document.getElementById('topics-container');
+            const topicInput = document.createElement('div');
+            topicInput.className = 'topic-input';
+            topicInput.innerHTML = `
+                <input type="text" placeholder="موضوع تحقیق را وارد کنید" class="topic-field">
+                <button type="button" class="remove-topic" onclick="removeTopic(this)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(topicInput);
+            
+            // نمایش دکمه حذف برای همه موضوعات
+            document.querySelectorAll('.remove-topic').forEach(btn => {
+                btn.style.display = 'block';
+            });
+        }
+        
+        function removeTopic(button) {
+            const topicInputs = document.querySelectorAll('.topic-input');
+            if (topicInputs.length > 1) {
+                button.parentElement.remove();
+            }
+            
+            // اگر فقط یک موضوع باقی ماند، دکمه حذف را مخفی کن
+            if (topicInputs.length === 2) {
+                document.querySelector('.remove-topic').style.display = 'none';
+            }
+        }
+        
+        // مدیریت تعداد صفحات و قیمت
+        const pagesInput = document.getElementById('pages');
+        const pagesCount = document.querySelector('.pages-count');
+        const totalPriceElement = document.getElementById('total-price');
+        const pricePerPage = 10000;
+        
+        function updateTotalPrice() {
+            const pages = parseInt(pagesInput.value);
+            const totalPrice = pages * pricePerPage;
+            totalPriceElement.textContent = totalPrice.toLocaleString();
+        }
+        
+        pagesInput.addEventListener('input', () => {
+            pagesCount.textContent = pagesInput.value;
+            updateTotalPrice();
+        });
+        
+        // ارسال سفارش
+        function sendOrder() {
+            const topicFields = document.querySelectorAll('.topic-field');
+            const topics = Array.from(topicFields)
+                .map(field => field.value.trim())
+                .filter(topic => topic !== '');
+                
+            if (topics.length === 0) {
+                alert('لطفاً حداقل یک موضوع برای تحقیق وارد کنید');
+                return;
+            }
+            
+            const pages = pagesInput.value;
+            const researchType = document.getElementById('research-type').value;
+            const researchTypeText = document.getElementById('research-type').options[document.getElementById('research-type').selectedIndex].text;
+            const notes = document.getElementById('notes').value;
+            const totalPrice = (pages * pricePerPage).toLocaleString();
+            
+            const message = `📚 سفارش جدید تحقیق دانشجویی:
+            
+📖 موضوعات تحقیق:
+${topics.map((topic, index) => `${index + 1}. ${topic}`).join('\n')}
+
+📄 تعداد صفحات: ${pages} صفحه
+🎯 نوع تحقیق: ${researchTypeText}
+💰 قیمت کل: ${totalPrice} تومان
+📝 توضیحات: ${notes || 'ندارد'}
+
+✅ لطفاً برای تأیید و پرداخت اقدام کنید.`;
+            
+            // کد پیام برای واتساپ و تلگرام
+            const encodedMessage = encodeURIComponent(message);
+            
+            // آپدیت لینک‌ها با پیام سفارش
+            document.getElementById('whatsapp-link').href = `https://wa.me/989224044842?text=${encodedMessage}`;
+            document.getElementById('telegram-link').href = `https://t.me/Cafinett8?text=${encodedMessage}`;
+            
+            // نمایش پیام موفقیت
+            alert('سفارش تحقیق شما آماده ارسال است! لطفاً یکی از روش‌های ارتباطی را انتخاب کنید.');
+            
+            // اسکرول به بخش تماس
+            document.querySelector('.contact-info').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // مقداردهی اولیه
+        updateTotalPrice();
+    </script>
+</body>
+</html>
