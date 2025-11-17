@@ -15,40 +15,28 @@
         }
 
         :root {
-            --day-bg: linear-gradient(-45deg, #1e3a8a, #3b82f6, #1e40af, #2563eb);
-            --night-bg: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #000000, #1e293b);
-            --day-card: linear-gradient(145deg, #ffffff, #f0f8ff);
-            --night-card: linear-gradient(145deg, #1a1a1a, #2d2d2d);
-            --day-text: #1e40af;
-            --night-text: #e0f2fe;
-            --day-accent: #1e40af;
-            --night-accent: #60a5fa;
-            --day-secondary: #1e3a8a;
-            --night-secondary: #3b82f6;
+            --day-bg: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+            --night-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --day-card: linear-gradient(145deg, #1e40af, #3b82f6);
+            --night-card: linear-gradient(145deg, #0f172a, #1e293b);
+            --day-text: #ffffff;
+            --night-text: #e2e8f0;
+            --day-accent: #60a5fa;
+            --night-accent: #93c5fd;
         }
 
         body {
             font-family: 'Vazir', sans-serif;
             background: var(--day-bg);
-            background-size: 400% 400%;
             color: var(--day-text);
             min-height: 100vh;
             transition: all 0.6s ease;
-            font-weight: bold;
             overflow-x: hidden;
-            animation: gradientShift 15s ease infinite;
         }
 
         body.night-mode {
             background: var(--night-bg);
-            background-size: 400% 400%;
             color: var(--night-text);
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -62,105 +50,53 @@
             position: fixed;
             top: 20px;
             left: 20px;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: var(--day-card);
-            color: var(--day-accent);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.4s ease;
             z-index: 1000;
-            border: 2px solid var(--day-accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .night-mode .theme-toggle {
-            background: var(--night-card);
-            color: var(--night-accent);
-            border-color: var(--night-accent);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .theme-toggle:hover {
             transform: scale(1.1) rotate(15deg);
-            animation: none;
+            background: rgba(255, 255, 255, 0.3);
         }
 
         /* هدر */
         header {
             text-align: center;
-            padding: 60px 0 40px 0;
-            position: relative;
-        }
-
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: floatElement 20s infinite linear;
-        }
-
-        @keyframes floatElement {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(720deg); }
+            padding: 40px 0 30px 0;
         }
 
         .neon-title {
             font-family: 'BTitr', sans-serif;
-            font-size: 5.5rem;
-            background: linear-gradient(135deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
-            background-size: 400% 400%;
+            font-size: clamp(4rem, 15vw, 8rem);
+            background: linear-gradient(135deg, #ffffff, #e0f2fe, #bfdbfe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            animation: titleGlow 3s ease-in-out infinite, colorChange 8s ease infinite, float 5s ease-in-out infinite;
-            text-shadow: 0 5px 25px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+            animation: titleGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
             font-weight: 900;
             letter-spacing: 3px;
             line-height: 1.1;
-            position: relative;
-        }
-
-        .neon-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ffffff, transparent);
-            border-radius: 50%;
-            filter: blur(1px);
         }
 
         .night-mode .neon-title {
-            background: linear-gradient(135deg, #ff0000, #ff9900, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff);
-            background-size: 400% 400%;
+            background: linear-gradient(135deg, #fef3c7, #fde68a, #fbbf24);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 25px rgba(96, 165, 250, 0.5);
+            text-shadow: 0 0 30px rgba(251, 191, 36, 0.5);
         }
 
         @keyframes titleGlow {
@@ -170,52 +106,20 @@
             }
             50% { 
                 filter: brightness(1.3);
-                transform: scale(1.03);
-            }
-        }
-
-        @keyframes colorChange {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-15px);
+                transform: scale(1.02);
             }
         }
 
         .tagline {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             opacity: 0.9;
-            font-weight: 700;
-            color: #ffffff;
+            font-weight: 500;
             margin-top: 10px;
-            animation: fadeIn 2s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 0.9; transform: translateY(0); }
-        }
-
-        .night-mode .tagline {
-            color: var(--night-text);
         }
 
         /* خدمات */
         .services {
-            padding: 40px 0;
+            padding: 30px 0;
         }
 
         .section-title {
@@ -226,47 +130,18 @@
             background: linear-gradient(135deg, #ffffff, #e0f2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            position: relative;
-            font-weight: 900;
-            animation: slideIn 1s ease;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #ffffff, #e0f2fe);
-            border-radius: 2px;
-            animation: expandWidth 1.5s ease;
-        }
-
-        @keyframes expandWidth {
-            from { width: 0; }
-            to { width: 100px; }
+            font-weight: 700;
         }
 
         .night-mode .section-title {
-            background: linear-gradient(135deg, var(--night-accent), var(--night-secondary));
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .night-mode .section-title::after {
-            background: linear-gradient(90deg, var(--night-accent), var(--night-secondary));
-        }
-
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             max-width: 1000px;
             margin: 0 auto;
@@ -275,110 +150,60 @@
         .service-card {
             background: var(--day-card);
             border-radius: 20px;
-            padding: 40px 25px;
+            padding: 40px 30px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
-            height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            animation: cardAppear 0.8s ease;
+            animation: cardFloat 6s ease-in-out infinite;
         }
 
-        @keyframes cardAppear {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .service-card:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .service-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .service-card:nth-child(3) {
+            animation-delay: 0.4s;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #ffffff, #e0f2fe);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            height: 100%;
-            opacity: 0.1;
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .night-mode .service-card {
             background: var(--night-card);
-            border-color: rgba(96, 165, 250, 0.3);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .night-mode .service-card::before {
-            background: linear-gradient(90deg, var(--night-accent), var(--night-secondary));
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .service-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .service-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 25px;
             display: block;
             transition: all 0.3s ease;
-            filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.2));
-            position: relative;
-            z-index: 2;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+            animation: iconPulse 2s ease-in-out infinite;
         }
 
-        /* رنگ آیکون‌ها در حالت روز */
-        .powerpoint-icon {
-            color: #d04423; /* قرمز پاورپوینت */
-        }
-        
-        .word-icon {
-            color: #2b579a; /* آبی ورد */
-        }
-        
-        .vpn-icon {
-            color: #25D366; /* سبز واتساپ */
-            animation: vpnSignal 2s infinite;
-        }
-
-        @keyframes vpnSignal {
+        @keyframes iconPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); filter: drop-shadow(0 0 10px #25D366); }
-        }
-
-        /* رنگ آیکون‌ها در حالت شب */
-        .night-mode .powerpoint-icon {
-            color: #d04423; /* قرمز پاورپوینت */
-        }
-        
-        .night-mode .word-icon {
-            color: #2b579a; /* آبی ورد */
-        }
-        
-        .night-mode .vpn-icon {
-            color: #25D366; /* سبز واتساپ */
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.15) rotate(5deg);
+            50% { transform: scale(1.1); }
         }
 
         .service-name {
             font-family: 'BTitr', sans-serif;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             margin: 0;
-            font-weight: 900;
-            position: relative;
-            z-index: 2;
+            font-weight: 700;
         }
 
         .service-link {
@@ -386,31 +211,11 @@
             color: inherit;
             display: block;
             transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .service-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #ffffff, #e0f2fe);
-            transition: width 0.3s ease;
-        }
-
-        .service-link:hover::after {
-            width: 100%;
-        }
-
-        .night-mode .service-link::after {
-            background: linear-gradient(90deg, var(--night-accent), var(--night-secondary));
         }
 
         /* تماس */
         .contact {
-            padding: 60px 0 40px 0;
+            padding: 50px 0 30px 0;
             text-align: center;
         }
 
@@ -421,50 +226,27 @@
             background: linear-gradient(135deg, #ffffff, #e0f2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            position: relative;
-            font-weight: 900;
-        }
-
-        .contact-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #ffffff, #e0f2fe);
-            border-radius: 2px;
+            font-weight: 700;
         }
 
         .night-mode .contact-title {
-            background: linear-gradient(135deg, var(--night-accent), var(--night-secondary));
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .night-mode .contact-title::after {
-            background: linear-gradient(90deg, var(--night-accent), var(--night-secondary));
         }
 
         .contact-desc {
             max-width: 600px;
             margin: 0 auto 30px auto;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             opacity: 0.9;
             line-height: 1.6;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .night-mode .contact-desc {
-            color: var(--night-text);
         }
 
         .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
             max-width: 700px;
             margin: 0 auto;
@@ -473,17 +255,17 @@
         .contact-btn {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
+            gap: 12px;
+            padding: 18px 30px;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: bold;
             font-size: 1.1rem;
             transition: all 0.4s ease;
-            min-width: 180px;
+            min-width: 200px;
             justify-content: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
@@ -506,7 +288,7 @@
 
         .contact-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .telegram {
@@ -523,8 +305,8 @@
         }
 
         .night-mode .phone {
-            background: linear-gradient(135deg, var(--night-accent), var(--night-secondary));
-            color: white;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #1e40af;
         }
 
         /* فوتر */
@@ -532,34 +314,20 @@
             text-align: center;
             padding: 40px 0 20px 0;
             margin-top: 40px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.8;
-            border-top: 2px solid;
-            border-image: linear-gradient(90deg, transparent, #ffffff, transparent) 1;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .night-mode footer {
-            border-image: linear-gradient(90deg, transparent, var(--night-accent), transparent) 1;
-            color: var(--night-text);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* رسپانسیو */
         @media (max-width: 768px) {
-            .neon-title {
-                font-size: 4rem;
-            }
-            
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-                max-width: 400px;
             }
             
             .service-card {
                 padding: 30px 20px;
-                height: 180px;
             }
             
             .contact-buttons {
@@ -570,48 +338,31 @@
             
             .contact-btn {
                 width: 100%;
-                max-width: 280px;
+                max-width: 300px;
             }
             
-            .section-title, .contact-title {
-                font-size: 2rem;
-            }
-            
-            .tagline {
-                font-size: 1.3rem;
+            .neon-title {
+                font-size: clamp(3rem, 12vw, 6rem);
             }
         }
 
         @media (max-width: 480px) {
-            .neon-title {
-                font-size: 3.2rem;
-            }
-            
-            .service-card {
-                padding: 25px 15px;
-                height: 160px;
-            }
-            
             .service-icon {
-                font-size: 2.8rem;
+                font-size: 3.5rem;
             }
             
             .service-name {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             
             .theme-toggle {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-            
-            .tagline, .contact-desc {
-                font-size: 1.1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
             
             header {
-                padding: 40px 0 30px 0;
+                padding: 30px 0 20px 0;
             }
         }
     </style>
@@ -623,7 +374,6 @@
 
     <div class="container">
         <header>
-            <div class="floating-elements" id="floatingElements"></div>
             <h1 class="neon-title">کافی نت</h1>
             <p class="tagline">ارائه خدمات دیجیتال و اینترنتی</p>
         </header>
@@ -632,21 +382,21 @@
             <h2 class="section-title">خدمات تخصصی ما</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-file-powerpoint service-icon powerpoint-icon"></i>
+                    <i class="fas fa-file-powerpoint service-icon"></i>
                     <p class="service-name">
                         <a href="powerpoint-order.html" class="service-link">سفارش پاورپوینت</a>
                     </p>
                 </div>
                 
                 <div class="service-card">
-                    <i class="fas fa-file-word service-icon word-icon"></i>
+                    <i class="fas fa-file-word service-icon"></i>
                     <p class="service-name">
                         <a href="research-order.html" class="service-link">تحقیق دانشجویی</a>
                     </p>
                 </div>
                 
                 <div class="service-card">
-                    <i class="fas fa-shield-alt service-icon vpn-icon"></i>
+                    <i class="fas fa-shield-alt service-icon"></i>
                     <p class="service-name">
                         <a href="vpn-shop.html" class="service-link">فیلترشکن پرسرعت</a>
                     </p>
@@ -691,37 +441,6 @@
                 icon.classList.add('fa-moon');
             }
         }
-
-        // ایجاد المان‌های شناور
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            const colors = ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)', 'rgba(255,255,255,0.15)'];
-            
-            for (let i = 0; i < 15; i++) {
-                const element = document.createElement('div');
-                element.classList.add('floating-element');
-                
-                const size = Math.random() * 60 + 20;
-                const left = Math.random() * 100;
-                const animationDuration = Math.random() * 30 + 20;
-                const animationDelay = Math.random() * 5;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                
-                element.style.width = `${size}px`;
-                element.style.height = `${size}px`;
-                element.style.left = `${left}%`;
-                element.style.background = color;
-                element.style.animationDuration = `${animationDuration}s`;
-                element.style.animationDelay = `${animationDelay}s`;
-                
-                container.appendChild(element);
-            }
-        }
-
-        // اجرای اسکریپت پس از لود صفحه
-        document.addEventListener('DOMContentLoaded', function() {
-            createFloatingElements();
-        });
     </script>
 </body>
 </html>
