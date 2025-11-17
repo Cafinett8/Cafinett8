@@ -15,8 +15,8 @@
         }
 
         :root {
-            --day-bg: linear-gradient(135deg, #1e3a8a, #3b82f6, #1e40af);
-            --night-bg: linear-gradient(135deg, #0a0a0a, #1a1a1a, #000000);
+            --day-bg: linear-gradient(-45deg, #1e3a8a, #3b82f6, #1e40af, #2563eb);
+            --night-bg: linear-gradient(-45deg, #0a0a0a, #1a1a1a, #000000, #1e293b);
             --day-card: linear-gradient(145deg, #ffffff, #f0f8ff);
             --night-card: linear-gradient(145deg, #1a1a1a, #2d2d2d);
             --day-text: #1e40af;
@@ -30,16 +30,25 @@
         body {
             font-family: 'Vazir', sans-serif;
             background: var(--day-bg);
+            background-size: 400% 400%;
             color: var(--day-text);
             min-height: 100vh;
             transition: all 0.6s ease;
             font-weight: bold;
             overflow-x: hidden;
+            animation: gradientShift 15s ease infinite;
         }
 
         body.night-mode {
             background: var(--night-bg);
+            background-size: 400% 400%;
             color: var(--night-text);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .container {
@@ -63,10 +72,17 @@
             justify-content: center;
             font-size: 1.4rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.4s ease;
             z-index: 1000;
             border: 2px solid var(--day-accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .night-mode .theme-toggle {
@@ -78,12 +94,36 @@
 
         .theme-toggle:hover {
             transform: scale(1.1) rotate(15deg);
+            animation: none;
         }
 
         /* هدر */
         header {
             text-align: center;
             padding: 60px 0 40px 0;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatElement 20s infinite linear;
+        }
+
+        @keyframes floatElement {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
         }
 
         .neon-title {
@@ -97,8 +137,22 @@
             animation: titleGlow 3s ease-in-out infinite, colorChange 8s ease infinite, float 5s ease-in-out infinite;
             text-shadow: 0 5px 25px rgba(255, 255, 255, 0.5);
             font-weight: 900;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             line-height: 1.1;
+            position: relative;
+        }
+
+        .neon-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            border-radius: 50%;
+            filter: blur(1px);
         }
 
         .night-mode .neon-title {
@@ -147,6 +201,12 @@
             font-weight: 700;
             color: #ffffff;
             margin-top: 10px;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 0.9; transform: translateY(0); }
         }
 
         .night-mode .tagline {
@@ -168,6 +228,12 @@
             -webkit-text-fill-color: transparent;
             position: relative;
             font-weight: 900;
+            animation: slideIn 1s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .section-title::after {
@@ -180,6 +246,12 @@
             height: 4px;
             background: linear-gradient(90deg, #ffffff, #e0f2fe);
             border-radius: 2px;
+            animation: expandWidth 1.5s ease;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 100px; }
         }
 
         .night-mode .section-title {
@@ -194,9 +266,9 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -210,11 +282,17 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
-            height: 200px;
+            height: 220px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            animation: cardAppear 0.8s ease;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .service-card::before {
@@ -225,6 +303,12 @@
             right: 0;
             height: 5px;
             background: linear-gradient(90deg, #ffffff, #e0f2fe);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+            opacity: 0.1;
         }
 
         .night-mode .service-card {
@@ -248,6 +332,8 @@
             display: block;
             transition: all 0.3s ease;
             filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.2));
+            position: relative;
+            z-index: 2;
         }
 
         /* رنگ آیکون‌ها در حالت روز */
@@ -261,6 +347,12 @@
         
         .vpn-icon {
             color: #25D366; /* سبز واتساپ */
+            animation: vpnSignal 2s infinite;
+        }
+
+        @keyframes vpnSignal {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 10px #25D366); }
         }
 
         /* رنگ آیکون‌ها در حالت شب */
@@ -285,6 +377,8 @@
             font-size: 1.7rem;
             margin: 0;
             font-weight: 900;
+            position: relative;
+            z-index: 2;
         }
 
         .service-link {
@@ -391,6 +485,23 @@
             justify-content: center;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .contact-btn:hover::before {
+            left: 100%;
         }
 
         .contact-btn:hover {
@@ -503,24 +614,6 @@
                 padding: 40px 0 30px 0;
             }
         }
-
-        @media (max-width: 360px) {
-            .neon-title {
-                font-size: 2.8rem;
-            }
-            
-            .service-card {
-                height: 150px;
-            }
-            
-            .service-icon {
-                font-size: 2.5rem;
-            }
-            
-            .service-name {
-                font-size: 1.3rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -530,6 +623,7 @@
 
     <div class="container">
         <header>
+            <div class="floating-elements" id="floatingElements"></div>
             <h1 class="neon-title">کافی نت</h1>
             <p class="tagline">ارائه خدمات دیجیتال و اینترنتی</p>
         </header>
@@ -548,6 +642,13 @@
                     <i class="fas fa-file-word service-icon word-icon"></i>
                     <p class="service-name">
                         <a href="research-order.html" class="service-link">تحقیق دانشجویی</a>
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-shield-alt service-icon vpn-icon"></i>
+                    <p class="service-name">
+                        <a href="vpn-shop.html" class="service-link">فیلترشکن پرسرعت</a>
                     </p>
                 </div>
             </div>
@@ -590,6 +691,37 @@
                 icon.classList.add('fa-moon');
             }
         }
+
+        // ایجاد المان‌های شناور
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const colors = ['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)', 'rgba(255,255,255,0.15)'];
+            
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                const size = Math.random() * 60 + 20;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 30 + 20;
+                const animationDelay = Math.random() * 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.left = `${left}%`;
+                element.style.background = color;
+                element.style.animationDuration = `${animationDuration}s`;
+                element.style.animationDelay = `${animationDelay}s`;
+                
+                container.appendChild(element);
+            }
+        }
+
+        // اجرای اسکریپت پس از لود صفحه
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingElements();
+        });
     </script>
 </body>
 </html>
