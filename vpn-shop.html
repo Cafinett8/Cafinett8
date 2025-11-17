@@ -77,16 +77,6 @@
             opacity: 0.9;
         }
         
-        .purchase-count {
-            background: rgba(37, 211, 102, 0.3);
-            padding: 10px 20px;
-            border-radius: 20px;
-            margin-top: 15px;
-            display: inline-block;
-            font-size: 1.1rem;
-            border: 1px solid rgba(37, 211, 102, 0.5);
-        }
-        
         /* مراحل خرید */
         .steps-container {
             margin-bottom: 40px;
@@ -173,7 +163,7 @@
         .bank-card {
             background: linear-gradient(135deg, #004B8D 0%, #0066CC 100%);
             border-radius: 20px;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
             margin: 20px 0;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -193,60 +183,80 @@
             transform: rotate(45deg);
         }
         
-        .bank-logo {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        .bank-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: bold;
+            color: #e0f2fe;
         }
         
-        .card-number-container {
+        .bank-name {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        
+        .card-number-section {
             direction: ltr;
             text-align: center;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
-        .card-number {
-            font-family: 'Courier New', monospace;
-            font-size: 1.6rem;
-            letter-spacing: 3px;
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 12px;
-            display: inline-block;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            font-weight: bold;
+        .card-number-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
             direction: ltr;
-            unicode-bidi: plaintext;
         }
         
-        .card-number:hover {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.5);
+        .card-number-part {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            background: rgba(255,255,255,0.2);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .card-number-dash {
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.7);
+            font-weight: bold;
         }
         
         .card-owner {
             font-size: 1.3rem;
-            margin-bottom: 10px;
+            margin: 20px 0;
             font-weight: bold;
+            background: rgba(255,255,255,0.15);
+            padding: 12px;
+            border-radius: 8px;
+            display: inline-block;
         }
         
         .copy-btn {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.25);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 15px 30px;
             border-radius: 10px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: all 0.3s ease;
             font-size: 1.1rem;
             font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-2px);
         }
         
@@ -331,10 +341,10 @@
                 gap: 10px;
             }
             
-            .card-number {
-                font-size: 1.3rem;
-                letter-spacing: 2px;
-                padding: 12px;
+            .card-number-part {
+                font-size: 1.2rem;
+                padding: 10px 15px;
+                min-width: 90px;
             }
             
             .header h1 {
@@ -350,8 +360,8 @@
                 font-size: 1.2rem;
             }
             
-            .bank-logo {
-                font-size: 2.5rem;
+            .card-number-line {
+                gap: 5px;
             }
         }
     </style>
@@ -363,7 +373,6 @@
             <div class="vpn-icon">🚀</div>
             <h1>خرید فیلترشکن</h1>
             <p>اتصال امن و پرسرعت به اینترنت جهانی</p>
-            <div class="purchase-count">📊 بیش از ۵۰۰+ خرید موفق</div>
         </div>
         
         <!-- مراحل خرید -->
@@ -385,19 +394,27 @@
                 <div class="step-number">۲</div>
                 <div class="step-title">💳 واریز مبلغ به حساب بانکی</div>
                 <div class="bank-card">
-                    <div class="bank-logo">
-                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMzAiIGZpbGw9IiMwMDQ2ODciLz4KPHBhdGggZD0iTTMyIDE2QzIzLjE2MzQgMTYgMTYgMjMuMTYzNCAxNiAzMkMxNiA0MC44MzY2IDIzLjE2MzQgNDggMzIgNDhDNDAuODM2NiA0OCA0OCA0MC44MzY2IDQ4IDMyQzQ4IDIzLjE2MzQgNDAuODM2NiAxNiAzMiAxNloiIGZpbGw9IiMwMDZDRUMiLz4KPHBhdGggZD0iTTM2IDI4SDI4VjM2SDM2VjI4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTI0IDI4SDE2VjM2SDI0VjI4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ4IDI4SDQwVjM2SDQ4VjI4WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+" 
-                             alt="سامان" style="width: 60px; height: 60px; filter: brightness(0) invert(1);">
-                    </div>
-                    <div style="font-size: 1.4rem; margin-bottom: 10px; font-weight: bold;">بانک سامان</div>
-                    <div class="card-number-container">
-                        <div class="card-number" id="cardNumber">
-                            6219-8619-8734-8090
+                    <div class="bank-title">واریز مبلغ به حساب بانکی</div>
+                    <div class="bank-name">بانک سامان</div>
+                    
+                    <div class="card-number-section">
+                        <div class="card-number-line">
+                            <div class="card-number-part">6219</div>
+                            <div class="card-number-dash">-</div>
+                            <div class="card-number-part">8619</div>
+                        </div>
+                        <div class="card-number-line">
+                            <div class="card-number-part">8734</div>
+                            <div class="card-number-dash">-</div>
+                            <div class="card-number-part">8090</div>
                         </div>
                     </div>
+                    
                     <div class="card-owner">بنام: امیر محمد حضراتی</div>
+                    
                     <button class="copy-btn" onclick="copyCardNumber()">
-                        📋 کپی شماره کارت
+                        <span>📋</span>
+                        کپی شماره کارت
                     </button>
                 </div>
             </div>
@@ -474,35 +491,48 @@
         function copyCardNumber() {
             const cardNumber = "6219861987348090";
             
-            // ایجاد المان موقت برای کپی
-            const tempInput = document.createElement('input');
-            tempInput.value = cardNumber;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            tempInput.setSelectionRange(0, 99999); // برای موبایل
+            // روش مدرن با Clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(cardNumber).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    fallbackCopy(cardNumber);
+                });
+            } else {
+                fallbackCopy(cardNumber);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
             
             try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    alert('✅ شماره کارت کپی شد: ' + cardNumber);
-                } else {
-                    // روش جایگزین
-                    navigator.clipboard.writeText(cardNumber).then(() => {
-                        alert('✅ شماره کارت کپی شد: ' + cardNumber);
-                    }).catch(() => {
-                        alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + cardNumber);
-                    });
-                }
+                document.execCommand('copy');
+                showCopySuccess();
             } catch (err) {
-                // روش جایگزین
-                navigator.clipboard.writeText(cardNumber).then(() => {
-                    alert('✅ شماره کارت کپی شد: ' + cardNumber);
-                }).catch(() => {
-                    alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + cardNumber);
-                });
+                alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + text);
             }
             
-            document.body.removeChild(tempInput);
+            document.body.removeChild(textArea);
+        }
+
+        function showCopySuccess() {
+            // تغییر موقت متن دکمه
+            const copyBtn = document.querySelector('.copy-btn');
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<span>✅</span> کپی شد!';
+            copyBtn.style.background = 'rgba(37, 211, 102, 0.5)';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.background = 'rgba(255, 255, 255, 0.25)';
+            }, 2000);
         }
 
         // ارسال به واتساپ
