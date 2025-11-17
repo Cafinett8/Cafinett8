@@ -14,24 +14,77 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --day-bg: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --night-bg: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            --day-text: #ffffff;
+            --night-text: #3b82f6;
+            --day-card: rgba(255, 255, 255, 0.1);
+            --night-card: rgba(59, 130, 246, 0.1);
+            --day-border: rgba(255, 255, 255, 0.2);
+            --night-border: rgba(59, 130, 246, 0.3);
+        }
+
         body {
             font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            color: #ffffff;
+            background: var(--day-bg);
+            color: var(--day-text);
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
             direction: rtl;
+            transition: all 0.5s ease;
+        }
+
+        body.night-mode {
+            background: var(--night-bg);
+            color: var(--night-text);
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--day-card);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--day-border);
             overflow: hidden;
             backdrop-filter: blur(5px);
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .container {
+            background: var(--night-card);
+            border: 1px solid var(--night-border);
+        }
+
+        /* دکمه تغییر تم */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .night-mode .theme-toggle {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
 
         /* هدر */
@@ -39,6 +92,11 @@
             text-align: center;
             padding: 50px 30px;
             background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .night-mode header {
+            background: rgba(59, 130, 246, 0.1);
         }
 
         /* عنوان سه بعدی با فونت B Titr */
@@ -46,27 +104,53 @@
             font-family: 'B Titr', 'Vazir', sans-serif;
             font-size: 7rem;
             font-weight: bold;
-            color: #ffffff;
+            color: var(--day-text);
             text-shadow: 
                 3px 3px 0 #1e40af,
                 6px 6px 0 #1e3a8a,
                 9px 9px 0 #1e3a8a;
             margin-bottom: 15px;
             animation: colorBlink 2s infinite;
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .neon-title {
+            color: var(--night-text);
+            text-shadow: 
+                3px 3px 0 #1e40af,
+                6px 6px 0 #1e3a8a,
+                9px 9px 0 #1e3a8a;
         }
 
         @keyframes colorBlink {
-            0% { color: #ffffff; }
+            0% { color: var(--day-text); }
             25% { color: #e0f2fe; }
             50% { color: #bfdbfe; }
             75% { color: #93c5fd; }
-            100% { color: #ffffff; }
+            100% { color: var(--day-text); }
+        }
+
+        .night-mode .neon-title {
+            animation: nightColorBlink 2s infinite;
+        }
+
+        @keyframes nightColorBlink {
+            0% { color: #3b82f6; }
+            25% { color: #60a5fa; }
+            50% { color: #93c5fd; }
+            75% { color: #bfdbfe; }
+            100% { color: #3b82f6; }
         }
 
         .tagline {
             font-size: 1.3rem;
             opacity: 0.9;
             font-family: 'Vazir', sans-serif;
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .tagline {
+            color: var(--night-text);
         }
 
         /* بخش اصلی */
@@ -80,7 +164,13 @@
             font-size: 2rem;
             font-weight: bold;
             font-family: 'Vazir', sans-serif;
-            color: #ffffff;
+            color: var(--day-text);
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .services h2,
+        .night-mode .contact h2 {
+            color: var(--night-text);
         }
 
         .services-grid {
@@ -91,8 +181,8 @@
         }
 
         .service-item {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: var(--day-card);
+            border: 1px solid var(--day-border);
             border-radius: 15px;
             padding: 25px 15px;
             text-align: center;
@@ -103,20 +193,35 @@
             display: block;
         }
 
+        .night-mode .service-item {
+            background: var(--night-card);
+            border: 1px solid var(--night-border);
+        }
+
         .service-item:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.15);
         }
 
+        .night-mode .service-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+        }
+
         .service-item i {
             font-size: 3rem;
-            color: #ffffff;
+            color: var(--day-text);
             margin-bottom: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .service-item i {
+            color: var(--night-text);
         }
 
         .service-item p {
             font-weight: 500;
             font-size: 1.1rem;
+            transition: all 0.5s ease;
         }
 
         /* بخش ارتباط */
@@ -129,6 +234,11 @@
             max-width: 500px;
             margin-right: auto;
             margin-left: auto;
+            transition: all 0.5s ease;
+        }
+
+        .night-mode .contact p {
+            color: var(--night-text);
         }
 
         .contact-buttons {
@@ -187,6 +297,12 @@
             background: rgba(0, 0, 0, 0.2);
             color: #e5e7eb;
             font-family: 'Vazir', sans-serif;
+            transition: all 0.5s ease;
+        }
+
+        .night-mode footer {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--night-text);
         }
 
         /* رسپانسیو */
@@ -239,6 +355,10 @@
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <div class="container">
         <header>
             <h1 class="neon-title">کافی نت</h1>
@@ -288,5 +408,20 @@
             <p>© 2023 کافی نت. تمامی حقوق محفوظ است.</p>
         </footer>
     </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('night-mode');
+            const icon = document.querySelector('.theme-toggle i');
+            
+            if (document.body.classList.contains('night-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    </script>
 </body>
 </html>
