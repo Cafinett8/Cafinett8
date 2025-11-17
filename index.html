@@ -16,302 +16,224 @@
 
         body {
             font-family: 'Vazir', sans-serif;
-            background: #0b0f1a;
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
             color: #fff;
-            transition: 0.5s;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        body.day {
-            background: linear-gradient(135deg, #dfefff, #b8d4ff);
-            color: #002b5c;
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .toggle {
-            position: fixed;
-            top: 25px;
-            left: 25px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: #1a2337;
-            color: #4da3ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(0,0,0,0.4);
-            transition: 0.4s;
-            z-index: 1000;
-            border: 2px solid rgba(77, 163, 255, 0.3);
-        }
-
-        .toggle:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 30px rgba(77, 163, 255, 0.6);
-        }
-
-        body.day .toggle {
-            background: #fff;
-            color: #0057d9;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-            border-color: rgba(0, 87, 217, 0.3);
-        }
-
+        /* هدر */
         header {
             text-align: center;
-            padding: 120px 0 70px 0;
+            padding: 100px 0 60px 0;
+            position: relative;
         }
 
-        .title {
+        .neon-title {
             font-family: 'BTitr', sans-serif;
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #4da3ff, #78c7ff, #a6dcff);
+            font-size: 5.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #ffa726, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 3s ease-in-out infinite;
-            text-shadow: 0 5px 25px rgba(77, 163, 255, 0.3);
-            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+            margin-bottom: 20px;
+            animation: neonGlow 3s ease-in-out infinite;
         }
 
-        @keyframes glow {
+        @keyframes neonGlow {
             0%, 100% {
                 filter: brightness(1);
                 transform: scale(1);
             }
             50% {
-                filter: brightness(1.4);
+                filter: brightness(1.3);
                 transform: scale(1.02);
             }
         }
 
-        body.day .title {
-            background: linear-gradient(135deg, #0057d9, #0091ff, #4da3ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         .tagline {
-            font-size: 1.7rem;
-            margin-top: 10px;
+            font-size: 1.8rem;
             opacity: 0.9;
+            color: #4ecdc4;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
+        /* خدمات */
         .services {
-            padding: 80px 20px;
+            padding: 80px 0;
         }
 
-        .services h2 {
+        .section-title {
             text-align: center;
             font-family: 'BTitr', sans-serif;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             margin-bottom: 70px;
-            background: linear-gradient(135deg, #4da3ff, #78c7ff);
+            background: linear-gradient(135deg, #ffa726, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
         }
 
-        .services h2::after {
+        .section-title::after {
             content: '';
             position: absolute;
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
+            width: 150px;
             height: 4px;
-            background: linear-gradient(90deg, #4da3ff, #78c7ff);
+            background: linear-gradient(90deg, #ffa726, #4ecdc4);
             border-radius: 2px;
         }
 
-        body.day .services h2 {
-            background: linear-gradient(135deg, #0057d9, #0091ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        body.day .services h2::after {
-            background: linear-gradient(90deg, #0057d9, #0091ff);
-        }
-
-        .grid {
-            max-width: 1300px;
-            margin: auto;
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 45px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-top: 30px;
         }
 
-        .item {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 25px;
-            padding: 60px 40px;
+            padding: 70px 40px;
             text-align: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
             position: relative;
             overflow: hidden;
         }
 
-        .item::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4da3ff, #78c7ff);
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa726, #4ecdc4);
         }
 
-        .item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            border-color: rgba(77, 163, 255, 0.4);
+        .service-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border-color: rgba(78, 205, 196, 0.5);
         }
 
-        body.day .item {
-            background: rgba(255, 255, 255, 0.85);
-            border-color: rgba(0, 85, 170, 0.15);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        body.day .item::before {
-            background: linear-gradient(90deg, #0057d9, #0091ff);
-        }
-
-        body.day .item:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: rgba(0, 87, 217, 0.4);
-        }
-
-        .item i {
-            font-size: 4.5rem;
-            margin-bottom: 30px;
-            background: linear-gradient(135deg, #4da3ff, #78c7ff);
+        .service-icon {
+            font-size: 5rem;
+            margin-bottom: 35px;
+            background: linear-gradient(135deg, #ff6b6b, #ffa726, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
             transition: all 0.3s ease;
         }
 
-        .item:hover i {
-            transform: scale(1.2) rotate(5deg);
+        .service-card:hover .service-icon {
+            transform: scale(1.3) rotate(10deg);
         }
 
-        body.day .item i {
-            background: linear-gradient(135deg, #0057d9, #0091ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .service-name {
+            font-family: 'BTitr', sans-serif;
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: bold;
         }
 
-        .item p a {
+        .service-link {
             text-decoration: none;
             color: inherit;
-            font-size: 2.1rem;
-            font-weight: bold;
-            font-family: 'BTitr', sans-serif;
+            display: block;
             transition: all 0.3s ease;
             position: relative;
-            display: inline-block;
         }
 
-        .item p a::after {
+        .service-link::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #4da3ff, #78c7ff);
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa726);
             transition: width 0.3s ease;
         }
 
-        .item p a:hover::after {
+        .service-link:hover::after {
             width: 100%;
         }
 
-        body.day .item p a::after {
-            background: linear-gradient(90deg, #0057d9, #0091ff);
-        }
-
+        /* تماس */
         .contact {
-            padding: 100px 20px;
+            padding: 100px 0;
             text-align: center;
         }
 
-        .contact h2 {
+        .contact-title {
             font-family: 'BTitr', sans-serif;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             margin-bottom: 50px;
-            background: linear-gradient(135deg, #4da3ff, #78c7ff);
+            background: linear-gradient(135deg, #ffa726, #4ecdc4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
         }
 
-        .contact h2::after {
+        .contact-title::after {
             content: '';
             position: absolute;
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
+            width: 150px;
             height: 4px;
-            background: linear-gradient(90deg, #4da3ff, #78c7ff);
+            background: linear-gradient(90deg, #ffa726, #4ecdc4);
             border-radius: 2px;
         }
 
-        body.day .contact h2 {
-            background: linear-gradient(135deg, #0057d9, #0091ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        body.day .contact h2::after {
-            background: linear-gradient(90deg, #0057d9, #0091ff);
-        }
-
-        .contact p {
-            max-width: 650px;
-            margin: 0 auto 50px auto;
-            font-size: 1.5rem;
+        .contact-desc {
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+            font-size: 1.6rem;
             opacity: 0.9;
             line-height: 1.8;
-            font-weight: 500;
         }
 
-        .btns {
-            margin-top: 50px;
+        .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 35px;
             flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 20px 45px;
-            border-radius: 50px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .contact-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            min-width: 200px;
+            gap: 15px;
+            padding: 22px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.4rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 220px;
             justify-content: center;
-            border: 2px solid transparent;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        .btn::before {
+        .contact-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -322,160 +244,147 @@
             transition: left 0.5s;
         }
 
-        .btn:hover::before {
+        .contact-btn:hover::before {
             left: 100%;
         }
 
-        .btn:nth-child(1) {
+        .telegram {
             background: linear-gradient(135deg, #0088cc, #00aced);
-            color: #fff;
         }
 
-        .btn:nth-child(2) {
+        .whatsapp {
             background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #fff;
         }
 
-        .btn:nth-child(3) {
-            background: linear-gradient(135deg, #4da3ff, #78c7ff);
-            color: #fff;
+        .phone {
+            background: linear-gradient(135deg, #ff6b6b, #ffa726);
         }
 
-        body.day .btn:nth-child(3) {
-            background: linear-gradient(135deg, #0057d9, #0091ff);
-        }
-
-        .btn:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+        .contact-btn:hover {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             border-color: rgba(255, 255, 255, 0.5);
         }
 
+        /* فوتر */
         footer {
             text-align: center;
-            padding: 60px 0;
-            margin-top: 80px;
+            padding: 70px 0;
+            margin-top: 100px;
             font-size: 1.3rem;
             opacity: 0.8;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        body.day footer {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
+        /* رسپانسیو */
         @media (max-width: 768px) {
-            .title {
-                font-size: 3.8rem;
+            .neon-title {
+                font-size: 4rem;
             }
             
-            .grid {
+            .services-grid {
                 grid-template-columns: 1fr;
-                gap: 35px;
+                gap: 40px;
             }
             
-            .item {
+            .service-card {
                 padding: 50px 30px;
             }
             
-            .btns {
+            .contact-buttons {
                 flex-direction: column;
                 align-items: center;
                 gap: 25px;
             }
             
-            .btn {
+            .contact-btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 320px;
+            }
+            
+            .section-title, .contact-title {
+                font-size: 2.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .title {
-                font-size: 3rem;
+            .neon-title {
+                font-size: 3.2rem;
             }
             
-            .services h2,
-            .contact h2 {
-                font-size: 2.5rem;
+            .service-card {
+                padding: 40px 25px;
             }
             
-            .item p a {
-                font-size: 1.8rem;
+            .service-icon {
+                font-size: 4rem;
             }
             
-            .toggle {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
+            .service-name {
+                font-size: 1.9rem;
+            }
+            
+            .container {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="toggle" onclick="changeTheme()">
-        <i class="fas fa-moon"></i>
+    <div class="container">
+        <header>
+            <h1 class="neon-title">کافی نت</h1>
+            <p class="tagline">ارائه خدمات دیجیتال و اینترنتی</p>
+        </header>
+
+        <section class="services">
+            <h2 class="section-title">خدمات تخصصی ما</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fab fa-microsoft service-icon"></i>
+                    <p class="service-name">
+                        <a href="powerpoint-order.html" class="service-link">سفارش پاورپوینت</a>
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-file-alt service-icon"></i>
+                    <p class="service-name">
+                        <a href="research-order.html" class="service-link">تحقیق دانشجویی</a>
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <i class="fas fa-shield-alt service-icon"></i>
+                    <p class="service-name">
+                        <a href="vpn-shop.html" class="service-link">فیلترشکن پرسرعت</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2 class="contact-title">ارتباط با ما</h2>
+            <p class="contact-desc">برای دریافت خدمات باکیفیت و مشاوره رایگان، از طریق راه‌های زیر با ما در تماس باشید</p>
+            <div class="contact-buttons">
+                <a href="https://t.me/Cafinett8" target="_blank" class="contact-btn telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    پیام در تلگرام
+                </a>
+                <a href="https://wa.me/989224044842" target="_blank" class="contact-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    چت در واتساپ
+                </a>
+                <a href="tel:09224044842" class="contact-btn phone">
+                    <i class="fas fa-phone-alt"></i>
+                    تماس مستقیم
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© ۲۰۲۳ کافی نت - تمامی حقوق محفوظ است</p>
+        </footer>
     </div>
-
-    <header>
-        <h1 class="title">کافی نت</h1>
-        <p class="tagline">ارائه خدمات دیجیتال و اینترنتی</p>
-    </header>
-
-    <section class="services">
-        <h2>خدمات تخصصی ما</h2>
-        <div class="grid">
-            <div class="item">
-                <i class="fas fa-presentation"></i>
-                <p><a href="powerpoint-order.html">طراحی پاورپوینت</a></p>
-            </div>
-            <div class="item">
-                <i class="fas fa-graduation-cap"></i>
-                <p><a href="research-order.html">پروژه دانشجویی</a></p>
-            </div>
-            <div class="item">
-                <i class="fas fa-bolt"></i>
-                <p><a href="vpn-shop.html">اینترنت پرسرعت</a></p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact">
-        <h2>ارتباط با ما</h2>
-        <p>برای دریافت خدمات باکیفیت و مشاوره رایگان، از طریق راه‌های زیر با ما در تماس باشید</p>
-        <div class="btns">
-            <a href="https://t.me/Cafinett8" target="_blank" class="btn">
-                <i class="fab fa-telegram-plane"></i>
-                تلگرام
-            </a>
-            <a href="https://wa.me/989224044842" target="_blank" class="btn">
-                <i class="fab fa-whatsapp"></i>
-                واتساپ
-            </a>
-            <a href="tel:09224044842" class="btn">
-                <i class="fas fa-phone-alt"></i>
-                تماس مستقیم
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        © ۲۰۲۳ کافی نت - تمامی حقوق محفوظ است
-    </footer>
-
-    <script>
-        function changeTheme() {
-            document.body.classList.toggle('day');
-            const icon = document.querySelector('.toggle i');
-            
-            if (document.body.classList.contains('day')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
-    </script>
 </body>
 </html>
