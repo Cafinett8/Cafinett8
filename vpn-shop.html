@@ -260,6 +260,66 @@
             transform: translateY(-2px);
         }
         
+        .copy-btn.copied {
+            background: rgba(37, 211, 102, 0.6);
+        }
+        
+        /* پاپ‌آپ کپی موفق */
+        .copy-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .copy-popup h2 {
+            font-family: 'B Titr', sans-serif;
+            font-size: 2.5rem;
+            color: #25D366;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .copy-popup .card-number {
+            font-family: 'Courier New', monospace;
+            font-size: 2rem;
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 3px solid #25D366;
+            direction: ltr;
+            margin: 20px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .copy-popup p {
+            font-size: 1.3rem;
+            color: #333;
+            text-align: center;
+            margin: 10px 0;
+        }
+        
+        .close-popup {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+        
         /* دکمه واتساپ */
         .whatsapp-section {
             text-align: center;
@@ -363,6 +423,15 @@
             .card-number-line {
                 gap: 5px;
             }
+            
+            .copy-popup h2 {
+                font-size: 2rem;
+            }
+            
+            .copy-popup .card-number {
+                font-size: 1.5rem;
+                padding: 15px 25px;
+            }
         }
     </style>
 </head>
@@ -412,7 +481,7 @@
                     
                     <div class="card-owner">بنام: امیر محمد حضراتی</div>
                     
-                    <button class="copy-btn" onclick="copyCardNumber()">
+                    <button class="copy-btn" onclick="copyCardNumber()" id="copyButton">
                         <span>📋</span>
                         کپی شماره کارت
                     </button>
@@ -439,6 +508,15 @@
         <a href="index.html" class="back-btn">← بازگشت به صفحه اصلی</a>
     </div>
 
+    <!-- پاپ‌آپ کپی موفق -->
+    <div class="copy-popup" id="copyPopup" style="display: none;">
+        <h2>✅ شماره کارت کپی شد</h2>
+        <div class="card-number">6219861987348090</div>
+        <p>شماره کارت با موفقیت کپی شد</p>
+        <p>می‌توانید در برنامه بانکی خود پیست کنید</p>
+        <button class="close-popup" onclick="closeCopyPopup()">باشه</button>
+    </div>
+
     <script>
         // داده‌های بسته‌ها
         const packages = [
@@ -449,6 +527,7 @@
         ];
 
         let selectedPackage = null;
+        let canCopy = true; // فلگ برای جلوگیری از کلیک سریع
 
         // ایجاد جدول قیمت
         function createPricingTable() {
@@ -489,50 +568,76 @@
 
         // کپی شماره کارت
         function copyCardNumber() {
-            const cardNumber = "6219861987348090";
+            if (!canCopy) return;
             
-            // روش مدرن با Clipboard API
+            const cardNumber = "6219861987348090";
+            const copyButton = document.getElementById('copyButton');
+            
+            // غیرفعال کردن موقت دکمه
+            canCopy = false;
+            copyButton.style.opacity = '0.7';
+            copyButton.style.cursor = 'not-allowed';
+            
+            // روش اصلی با Clipboard API
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(cardNumber).then(() => {
-                    showCopySuccess();
-                }).catch(() => {
-                    fallbackCopy(cardNumber);
-                });
+                navigator.clipboard.writeText(cardNumber)
+                    .then(() => {
+                        showCopyPopup();
+                    })
+                    .catch(err => {
+                        console.error('خطا در کپی:', err);
+                        fallbackCopy(cardNumber);
+                    });
             } else {
                 fallbackCopy(cardNumber);
             }
+            
+            // فعال کردن مجدد دکمه بعد از 1 ثانیه
+            setTimeout(() => {
+                canCopy = true;
+                copyButton.style.opacity = '1';
+                copyButton.style.cursor = 'pointer';
+            }, 1000);
         }
 
         function fallbackCopy(text) {
+            // ایجاد یک textarea موقت
             const textArea = document.createElement('textarea');
             textArea.value = text;
+            
+            // قرار دادن خارج از صفحه
             textArea.style.position = 'fixed';
+            textArea.style.top = '0';
+            textArea.style.left = '0';
             textArea.style.opacity = '0';
+            
             document.body.appendChild(textArea);
+            1
+            // انتخاب و کپی
             textArea.focus();
             textArea.select();
             
             try {
-                document.execCommand('copy');
-                showCopySuccess();
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopyPopup();
+                } else {
+                    alert('❌ لطفاً شماره کارت را دستی کپی کنید:\n' + text);
+                }
             } catch (err) {
-                alert('❌ لطفاً شماره کارت را دستی کپی کنید: ' + text);
+                alert('❌ لطفاً شماره کارت را دستی کپی کنید:\n' + text);
             }
             
+            // حذف textarea
             document.body.removeChild(textArea);
         }
 
-        function showCopySuccess() {
-            // تغییر موقت متن دکمه
-            const copyBtn = document.querySelector('.copy-btn');
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<span>✅</span> کپی شد!';
-            copyBtn.style.background = 'rgba(37, 211, 102, 0.5)';
-            
-            setTimeout(() => {
-                copyBtn.innerHTML = originalText;
-                copyBtn.style.background = 'rgba(255, 255, 255, 0.25)';
-            }, 2000);
+        function showCopyPopup() {
+            document.getElementById('copyPopup').style.display = 'flex';
+        }
+
+        function closeCopyPopup() {
+            document.getElementById('copyPopup').style.display = 'none';
         }
 
         // ارسال به واتساپ
