@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخبار کافی نت - استخدام و ثبت نام</title>
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/B-Titr/BTitr.css">
+    <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --light-blue: #dbeafe;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: 'Vazir', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* هدر */
+        .news-header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .news-title {
+            font-family: 'BTitr', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            50% { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+        }
+
+        .news-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* منو */
+        .news-nav {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 12px 25px;
+            background: var(--light-blue);
+            border: none;
+            border-radius: 25px;
+            color: var(--primary-blue);
+            font-family: 'Vazir', sans-serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .nav-tab.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* محتوا */
+        .news-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-family: 'BTitr', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        /* کارت‌های استخدام */
+        .job-cards {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .job-card {
+            background: var(--light-blue);
+            border-radius: 15px;
+            padding: 25px;
+            border-right: 5px solid var(--secondary-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .job-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .job-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2);
+        }
+
+        .job-title {
+            font-family: 'BTitr', sans-serif;
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .job-meta i {
+            color: var(--secondary-blue);
+            margin-left: 5px;
+        }
+
+        .apply-btn {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-family: 'Vazir', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+
+        /* بخش مدارک */
+        .documents-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px dashed var(--light-blue);
+        }
+
+        .doc-list {
+            list-style: none;
+        }
+
+        .doc-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            border-right: 3px solid var(--secondary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .doc-item:hover {
+            transform: translateX(5px);
+            background: #e0f2fe;
+        }
+
+        .doc-item i {
+            color: var(--secondary-blue);
+            margin-left: 10px;
+        }
+
+        /* سایدبار */
+        .sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .urgent-news {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .quick-links {
+            list-style: none;
+        }
+
+        .quick-link {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--light-blue);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .quick-link:hover {
+            background: var(--secondary-blue);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        /* فوتر */
+        .news-footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .news-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .news-title {
+                font-size: 2.5rem;
+            }
+            
+            .job-meta {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="news-container">
+        <!-- هدر -->
+        <header class="news-header">
+            <h1 class="news-title">اخبار کافی نت</h1>
+            <p class="news-subtitle">آزمون‌های استخدامی و ثبت‌نام</p>
+        </header>
+
+        <!-- منو -->
+        <nav class="news-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active">آزمون‌های استخدامی</button>
+                <button class="nav-tab">ثبت‌نام آنلاین</button>
+                <button class="nav-tab">مدارک مورد نیاز</button>
+                <button class="nav-tab">نتایج آزمون</button>
+                <button class="nav-tab">اطلاعیه‌ها</button>
+            </div>
+        </nav>
+
+        <!-- محتوای اصلی -->
+        <div class="news-content">
+            <!-- بخش اصلی -->
+            <main class="main-content">
+                <!-- آزمون‌های استخدامی -->
+                <section class="jobs-section">
+                    <h2 class="section-title">آزمون‌های استخدامی فعال</h2>
+                    <div class="job-cards">
+                        <div class="job-card">
+                            <h3 class="job-title">کارشناس فناوری اطلاعات</h3>
+                            <div class="job-meta">
+                                <span><i class="fas fa-calendar"></i> مهلت ثبت‌نام: 1402/12/15</span>
+                                <span><i class="fas fa-users"></i> ظرفیت: 5 نفر</span>
+                            </div>
+                            <p>مسئولیت پشتیبانی شبکه و خدمات کامپیوتری کافی نت</p>
+                            <button class="apply-btn">ثبت‌نام در آزمون</button>
+                        </div>
+
+                        <div class="job-card">
+                            <h3 class="job-title">اپراتور خدمات اینترنتی</h3>
+                            <div class="job-meta">
+                                <span><i class="fas fa-calendar"></i> مهلت ثبت‌نام: 1402/12/20</span>
+                                <span><i class="fas fa-users"></i> ظرفیت: 8 نفر</span>
+                            </div>
+                            <p>ارائه خدمات به مشتریان و مدیریت سیستم‌های کافی نت</p>
+                            <button class="apply-btn">ثبت‌نام در آزمون</button>
+                        </div>
+
+                        <div class="job-card">
+                            <h3 class="job-title">منشی و مسئول پذیرش</h3>
+                            <div class="job-meta">
+                                <span><i class="fas fa-calendar"></i> مهلت ثبت‌نام: 1402/12/10</span>
+                                <span><i class="fas fa-users"></i> ظرفیت: 3 نفر</span>
+                            </div>
+                            <p>مدیریت پذیرش و پاسخگویی به مراجعین کافی نت</p>
+                            <button class="apply-btn">ثبت‌نام در آزمون</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- مدارک مورد نیاز -->
+                <section class="documents-section">
+                    <h2 class="section-title">مدارک مورد نیاز برای ثبت‌نام</h2>
+                    <ul class="doc-list">
+                        <li class="doc-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>کپی شناسنامه و کارت ملی</span>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>مدرک تحصیلی مرتبط</span>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-image"></i>
+                            <span>عکس 4*3 پرسنلی</span>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-file-contract"></i>
+                            <span>رزومه کاری و سوابق</span>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>گواهی‌های مهارتی مرتبط</span>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <!-- سایدبار -->
+            <aside class="sidebar">
+                <div class="urgent-news">
+                    <h3><i class="fas fa-exclamation-triangle"></i> فوری</h3>
+                    <p>آخرین مهلت ثبت‌نام در آزمون کارشناسی فناوری اطلاعات</p>
+                    <small>فقط 3 روز باقی مانده</small>
+                </div>
+
+                <h3>لینک‌های سریع</h3>
+                <ul class="quick-links">
+                    <li class="quick-link">فرم ثبت‌نام آنلاین</li>
+                    <li class="quick-link">راهنمای تکمیل مدارک</li>
+                    <li class="quick-link">سوالات متداول</li>
+                    <li class="quick-link">قوانین و مقررات</li>
+                    <li class="quick-link">تماس با پشتیبانی</li>
+                </ul>
+            </aside>
+        </div>
+
+        <!-- فوتر -->
+        <footer class="news-footer">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به صفحه اصلی
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // مدیریت تب‌ها
+        const tabs = document.querySelectorAll('.nav-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        // مدیریت لینک‌های سریع
+        const quickLinks = document.querySelectorAll('.quick-link');
+        quickLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                alert('این بخش به زودی فعال می‌شود');
+            });
+        });
+
+        // مدیریت دکمه‌های ثبت‌نام
+        const applyButtons = document.querySelectorAll('.apply-btn');
+        applyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('فرم ثبت‌نام به زودی فعال می‌شود');
+            });
+        });
+    </script>
+</body>
+</html>
