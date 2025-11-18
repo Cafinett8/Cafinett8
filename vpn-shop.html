@@ -200,24 +200,10 @@
             margin-bottom: 5px;
         }
         
-        .package-original-price {
-            font-size: 1rem;
-            color: #ff6b6b;
-            text-decoration: line-through;
-            margin-bottom: 3px;
-        }
-        
-        .package-discount {
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            font-weight: bold;
-            box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+        .package-duration {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
         }
 
         /* بخش کد تخفیف */
@@ -773,7 +759,7 @@
         <div class="discount-section">
             <div class="discount-title">کد تخفیف ویژه</div>
             <div class="discount-input-container">
-                <input type="text" class="discount-input" id="discountCode" placeholder="cafinett8 را وارد کنید">
+                <input type="text" class="discount-input" id="discountCode" placeholder="کد تخفیف را وارد کنید">
                 <button class="apply-discount-btn" onclick="applyDiscount()">
                     <i class="fas fa-tag"></i>
                     اعمال تخفیف
@@ -856,42 +842,39 @@
     </div>
 
     <script>
-        // محاسبه درصد افزایش: 42,000 -> 100,000 = 138% افزایش
-        const priceIncreaseMultiplier = 100000 / 42000; // 2.38
-
-        // داده‌های بسته‌ها با قیمت‌های جدید
+        // قیمت‌های نهایی (افزایش یافته)
         const packages = {
             "1month": [
-                { size: "20 گیگ", duration: "۱ ماه", originalPrice: 35000, price: Math.round(35000 * priceIncreaseMultiplier), icon: "📱" },
-                { size: "30 گیگ", duration: "۱ ماه", originalPrice: 42000, price: 100000, icon: "💻" },
-                { size: "40 گیگ", duration: "۱ ماه", originalPrice: 49000, price: Math.round(49000 * priceIncreaseMultiplier), icon: "🚀" },
-                { size: "50 گیگ", duration: "۱ ماه", originalPrice: 56000, price: Math.round(56000 * priceIncreaseMultiplier), icon: "⚡" },
-                { size: "60 گیگ", duration: "۱ ماه", originalPrice: 62999, price: Math.round(62999 * priceIncreaseMultiplier), icon: "🔥" },
-                { size: "70 گیگ", duration: "۱ ماه", originalPrice: 77000, price: Math.round(77000 * priceIncreaseMultiplier), icon: "🎯" },
-                { size: "100 گیگ", duration: "۱ ماه", originalPrice: 105000, price: Math.round(105000 * priceIncreaseMultiplier), icon: "💎" },
-                { size: "200 گیگ", duration: "۱ ماه", originalPrice: 210000, price: Math.round(210000 * priceIncreaseMultiplier), icon: "👑" },
-                { size: "300 گیگ", duration: "۱ ماه", originalPrice: 315000, price: Math.round(315000 * priceIncreaseMultiplier), icon: "🚀" }
+                { size: "20 گیگ", duration: "۱ ماه", price: 83000, icon: "📱" },
+                { size: "30 گیگ", duration: "۱ ماه", price: 100000, icon: "💻" },
+                { size: "40 گیگ", duration: "۱ ماه", price: 117000, icon: "🚀" },
+                { size: "50 گیگ", duration: "۱ ماه", price: 133000, icon: "⚡" },
+                { size: "60 گیگ", duration: "۱ ماه", price: 150000, icon: "🔥" },
+                { size: "70 گیگ", duration: "۱ ماه", price: 183000, icon: "🎯" },
+                { size: "100 گیگ", duration: "۱ ماه", price: 250000, icon: "💎" },
+                { size: "200 گیگ", duration: "۱ ماه", price: 500000, icon: "👑" },
+                { size: "300 گیگ", duration: "۱ ماه", price: 750000, icon: "🚀" }
             ],
             "2month": [
-                { size: "20 گیگ", duration: "۲ ماه", originalPrice: 45500, price: Math.round(45500 * priceIncreaseMultiplier), icon: "📱" },
-                { size: "40 گیگ", duration: "۲ ماه", originalPrice: 59499, price: Math.round(59499 * priceIncreaseMultiplier), icon: "💻" },
-                { size: "60 گیگ", duration: "۲ ماه", originalPrice: 77000, price: Math.round(77000 * priceIncreaseMultiplier), icon: "🚀" },
-                { size: "80 گیگ", duration: "۲ ماه", originalPrice: 101500, price: Math.round(101500 * priceIncreaseMultiplier), icon: "⚡" },
-                { size: "100 گیگ", duration: "۲ ماه", originalPrice: 118999, price: Math.round(118999 * priceIncreaseMultiplier), icon: "🔥" },
-                { size: "120 گیگ", duration: "۲ ماه", originalPrice: 147000, price: Math.round(147000 * priceIncreaseMultiplier), icon: "🎯" },
-                { size: "150 گیگ", duration: "۲ ماه", originalPrice: 168000, price: Math.round(168000 * priceIncreaseMultiplier), icon: "💎" },
-                { size: "200 گیگ", duration: "۲ ماه", originalPrice: 224000, price: Math.round(224000 * priceIncreaseMultiplier), icon: "👑" },
-                { size: "300 گیگ", duration: "۲ ماه", originalPrice: 322000, price: Math.round(322000 * priceIncreaseMultiplier), icon: "🚀" }
+                { size: "20 گیگ", duration: "۲ ماه", price: 108000, icon: "📱" },
+                { size: "40 گیگ", duration: "۲ ماه", price: 141000, icon: "💻" },
+                { size: "60 گیگ", duration: "۲ ماه", price: 183000, icon: "🚀" },
+                { size: "80 گیگ", duration: "۲ ماه", price: 241000, icon: "⚡" },
+                { size: "100 گیگ", duration: "۲ ماه", price: 283000, icon: "🔥" },
+                { size: "120 گیگ", duration: "۲ ماه", price: 349000, icon: "🎯" },
+                { size: "150 گیگ", duration: "۲ ماه", price: 399000, icon: "💎" },
+                { size: "200 گیگ", duration: "۲ ماه", price: 532000, icon: "👑" },
+                { size: "300 گیگ", duration: "۲ ماه", price: 765000, icon: "🚀" }
             ],
             "3month": [
-                { size: "60 گیگ", duration: "۳ ماه", originalPrice: 84000, price: Math.round(84000 * priceIncreaseMultiplier), icon: "📱" },
-                { size: "80 گیگ", duration: "۳ ماه", originalPrice: 112000, price: Math.round(112000 * priceIncreaseMultiplier), icon: "💻" },
-                { size: "90 گیگ", duration: "۳ ماه", originalPrice: 118999, price: Math.round(118999 * priceIncreaseMultiplier), icon: "🚀" },
-                { size: "100 گیگ", duration: "۳ ماه", originalPrice: 125999, price: Math.round(125999 * priceIncreaseMultiplier), icon: "⚡" },
-                { size: "120 گیگ", duration: "۳ ماه", originalPrice: 154000, price: Math.round(154000 * priceIncreaseMultiplier), icon: "🔥" },
-                { size: "150 گیگ", duration: "۳ ماه", originalPrice: 175000, price: Math.round(175000 * priceIncreaseMultiplier), icon: "🎯" },
-                { size: "200 گیگ", duration: "۳ ماه", originalPrice: 230999, price: Math.round(230999 * priceIncreaseMultiplier), icon: "💎" },
-                { size: "300 گیگ", duration: "۳ ماه", originalPrice: 329000, price: Math.round(329000 * priceIncreaseMultiplier), icon: "👑" }
+                { size: "60 گیگ", duration: "۳ ماه", price: 200000, icon: "📱" },
+                { size: "80 گیگ", duration: "۳ ماه", price: 266000, icon: "💻" },
+                { size: "90 گیگ", duration: "۳ ماه", price: 283000, icon: "🚀" },
+                { size: "100 گیگ", duration: "۳ ماه", price: 299000, icon: "⚡" },
+                { size: "120 گیگ", duration: "۳ ماه", price: 366000, icon: "🔥" },
+                { size: "150 گیگ", duration: "۳ ماه", price: 416000, icon: "🎯" },
+                { size: "200 گیگ", duration: "۳ ماه", price: 549000, icon: "💎" },
+                { size: "300 گیگ", duration: "۳ ماه", price: 782000, icon: "👑" }
             ]
         };
 
@@ -942,20 +925,10 @@
                 const button = document.createElement('button');
                 button.className = 'package-btn';
                 
-                // محاسبه درصد افزایش قیمت
-                const increasePercentage = Math.round(((pkg.price - pkg.originalPrice) / pkg.originalPrice) * 100);
-                
-                let discountBadge = '';
-                if (increasePercentage > 0) {
-                    discountBadge = `<div class="package-discount">+${increasePercentage}%</div>`;
-                }
-                
                 button.innerHTML = `
-                    ${discountBadge}
                     <div class="package-size">${pkg.size}</div>
                     <div class="package-price">${formatPrice(pkg.price)} تومان</div>
-                    ${pkg.price !== pkg.originalPrice ? `<div class="package-original-price">${formatPrice(pkg.originalPrice)} تومان</div>` : ''}
-                    <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 5px;">${pkg.duration}</div>
+                    <div class="package-duration">${pkg.duration}</div>
                 `;
                 
                 button.addEventListener('click', () => selectPackage(index));
