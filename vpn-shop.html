@@ -107,18 +107,36 @@
             transform: rotate(45deg);
         }
         
-        .free-vpn-title {
-            font-size: 2rem;
+        .free-vpn-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             margin-bottom: 30px;
-            color: #FFD700;
-            font-weight: bold;
-            position: relative;
         }
         
-        .free-vpn-title::after {
-            content: '🎁';
-            margin-right: 15px;
-            font-size: 2.2rem;
+        .free-vpn-title {
+            font-size: 2rem;
+            color: #FFD700;
+            font-weight: bold;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .free-vpn-icon {
+            font-size: 2.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
         
         .free-vpn-input-container {
@@ -162,6 +180,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            white-space: nowrap;
         }
         
         .start-contest-btn:hover {
@@ -201,58 +220,93 @@
             display: inline-block;
         }
         
-        .hold-section {
+        .timer-section {
             margin: 30px 0;
             display: none;
         }
         
-        .hold-button {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            color: white;
-            border: none;
-            padding: 25px 40px;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 300px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        
-        .hold-button:active {
-            transform: scale(0.98);
-        }
-        
-        .hold-button.holding {
-            background: linear-gradient(135deg, #25D366, #1ea952);
-        }
-        
-        .hold-progress {
-            margin-top: 15px;
-            height: 8px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .hold-progress-bar {
-            height: 100%;
-            background: linear-gradient(135deg, #25D366, #1ea952);
-            width: 0%;
-            transition: width 0.1s;
-            border-radius: 4px;
-        }
-        
         .timer-display {
-            font-size: 1.5rem;
-            margin-top: 15px;
+            font-size: 4rem;
             font-weight: bold;
             color: #FFD700;
             direction: ltr;
+            margin: 20px 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .target-time {
+            font-size: 1.3rem;
+            color: #93c5fd;
+            margin-bottom: 20px;
+        }
+        
+        .target-time span {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 2px solid #FFD700;
+        }
+        
+        .timer-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
+        }
+        
+        .timer-button {
+            background: linear-gradient(135deg, #25D366, #1ea952);
+            color: white;
+            border: none;
+            padding: 20px 35px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+        
+        .timer-button:active {
+            transform: scale(0.98);
+        }
+        
+        .timer-button.start {
+            background: linear-gradient(135deg, #25D366, #1ea952);
+        }
+        
+        .timer-button.stop {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+        }
+        
+        .timer-button:disabled {
+            background: #6b7280;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .timer-message {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 40px;
+        }
+        
+        .timer-success {
+            color: #25D366;
+            background: rgba(37, 211, 102, 0.1);
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .timer-fail {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 12px 20px;
+            border-radius: 10px;
+            display: inline-block;
         }
         
         .winner-popup {
@@ -1007,6 +1061,21 @@
                 font-size: 1.5rem;
                 padding: 20px;
             }
+            
+            .free-vpn-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .timer-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .timer-button {
+                width: 100%;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
@@ -1021,7 +1090,11 @@
 
         <!-- بخش فیلترشکن رایگان -->
         <div class="free-vpn-section">
-            <div class="free-vpn-title">🎁 فیلترشکن رایگان</div>
+            <div class="free-vpn-header">
+                <div class="free-vpn-icon">🎯</div>
+                <div class="free-vpn-title">فیلترشکن رایگان</div>
+            </div>
+            
             <div class="free-vpn-input-container">
                 <input type="text" class="free-vpn-input" id="freeVpnCode" placeholder="کد ورود را وارد کنید">
                 <button class="start-contest-btn" onclick="validateFreeVpnCode()">
@@ -1031,22 +1104,26 @@
             </div>
             <div class="free-vpn-message" id="freeVpnMessage"></div>
             
-            <div class="hold-section" id="holdSection">
-                <button class="hold-button" id="holdButton" 
-                        onmousedown="startHoldTimer()" 
-                        onmouseup="cancelHoldTimer()"
-                        ontouchstart="startHoldTimer()" 
-                        ontouchend="cancelHoldTimer()">
-                    <i class="fas fa-hand-point-down"></i>
-                    نگه دارید (۱۰ ثانیه)
-                </button>
-                <div class="hold-progress" id="holdProgress">
-                    <div class="hold-progress-bar" id="holdProgressBar"></div>
+            <div class="timer-section" id="timerSection">
+                <div class="target-time">
+                    هدف: توقف در دقیقاً <span>۱۰ ثانیه</span>
                 </div>
-                <div class="timer-display" id="timerDisplay"></div>
+                <div class="timer-display" id="timerDisplay">0.0</div>
+                <div class="timer-buttons">
+                    <button class="timer-button start" id="startButton" onclick="startTimer()">
+                        <i class="fas fa-play"></i>
+                        شروع
+                    </button>
+                    <button class="timer-button stop" id="stopButton" onclick="stopTimer()" disabled>
+                        <i class="fas fa-stop"></i>
+                        توقف
+                    </button>
+                </div>
+                <div class="timer-message" id="timerMessage"></div>
             </div>
         </div>
 
+        <!-- بقیه محتوای سایت بدون تغییر -->
         <!-- تب‌های مدت زمان -->
         <div class="duration-tabs" id="durationTabs">
             <!-- با JavaScript پر می‌شود -->
@@ -1142,7 +1219,7 @@
         <div class="winner-content">
             <div class="winner-title">🎉 تبریک! شما برنده شدید</div>
             <div class="winner-message">
-                شما موفق شدید ۱۰ ثانیه دکمه را نگه دارید و برنده فیلترشکن رایگان شدید!
+                شما موفق شدید در دقیقاً ۱۰ ثانیه توقف کنید و برنده فیلترشکن رایگان شدید!
             </div>
             <div class="winner-vpn-code" id="winnerVpnCode">
                 <!-- کد فیلترشکن اینجا نمایش داده می‌شود -->
@@ -1171,30 +1248,35 @@
     </div>
 
     <script>
-        // کدهای فیلترشکن رایگان
-        const FREE_VPN_CODES = {
-            "vpn12": { used: false, vpnCode: "FREE-VPN-12-AB34" },
-            "vpn13": { used: false, vpnCode: "FREE-VPN-13-CD56" },
-            "vpn14": { used: false, vpnCode: "FREE-VPN-14-EF78" }
-        };
+        // ایجاد 30 کد فیلترشکن
+        const FREE_VPN_CODES = {};
+        for (let i = 1; i <= 30; i++) {
+            FREE_VPN_CODES[`vpn${i}`] = { 
+                used: false, 
+                vpnCode: `FREE-VPN-${i.toString().padStart(2, '0')}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`
+            };
+        }
 
         // متغیرهای تایمر
-        let holdTimer = null;
-        let holdTime = 0;
-        const HOLD_TARGET = 10; // 10 ثانیه
+        let timer = null;
+        let currentTime = 0;
+        const TARGET_TIME = 10; // 10 ثانیه
         let currentWinnerCode = "";
 
         // بررسی کد فیلترشکن رایگان
         function validateFreeVpnCode() {
             const freeVpnCode = document.getElementById('freeVpnCode').value.trim().toLowerCase();
             const freeVpnMessage = document.getElementById('freeVpnMessage');
-            const holdSection = document.getElementById('holdSection');
+            const timerSection = document.getElementById('timerSection');
             
             if (FREE_VPN_CODES[freeVpnCode]) {
                 if (!FREE_VPN_CODES[freeVpnCode].used) {
-                    freeVpnMessage.innerHTML = '<span class="free-vpn-success">✅ کد معتبر است! حالا دکمه زیر را ۱۰ ثانیه نگه دارید</span>';
-                    holdSection.style.display = 'block';
+                    freeVpnMessage.innerHTML = '<span class="free-vpn-success">✅ کد معتبر است! حالا مسابقه را شروع کنید</span>';
+                    timerSection.style.display = 'block';
                     currentWinnerCode = freeVpnCode;
+                    
+                    // ریست کردن تایمر
+                    resetTimer();
                 } else {
                     freeVpnMessage.innerHTML = '<span class="free-vpn-error">❌ این کد قبلاً استفاده شده است</span>';
                 }
@@ -1203,61 +1285,95 @@
             }
         }
 
-        // شروع تایمر نگه‌داری
-        function startHoldTimer() {
-            const holdButton = document.getElementById('holdButton');
-            const holdProgress = document.getElementById('holdProgress');
-            const holdProgressBar = document.getElementById('holdProgressBar');
+        // شروع تایمر
+        function startTimer() {
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
             const timerDisplay = document.getElementById('timerDisplay');
+            const timerMessage = document.getElementById('timerMessage');
             
-            holdButton.classList.add('holding');
-            holdProgress.style.display = 'block';
-            holdTime = 0;
+            // غیرفعال کردن دکمه شروع و فعال کردن دکمه توقف
+            startButton.disabled = true;
+            stopButton.disabled = false;
             
-            holdTimer = setInterval(() => {
-                holdTime += 0.1;
-                const progress = (holdTime / HOLD_TARGET) * 100;
-                holdProgressBar.style.width = progress + '%';
-                timerDisplay.textContent = holdTime.toFixed(1) + ' ثانیه';
+            // پاک کردن پیام قبلی
+            timerMessage.innerHTML = '';
+            
+            currentTime = 0;
+            timerDisplay.textContent = '0.0';
+            timerDisplay.style.color = '#FFD700';
+            
+            timer = setInterval(() => {
+                currentTime += 0.1;
+                timerDisplay.textContent = currentTime.toFixed(1);
                 
-                if (holdTime >= HOLD_TARGET) {
-                    clearInterval(holdTimer);
-                    userWins();
+                // تغییر رنگ در نزدیکی زمان هدف
+                if (currentTime >= 9.5 && currentTime <= 10.5) {
+                    timerDisplay.style.color = '#25D366';
+                } else {
+                    timerDisplay.style.color = '#FFD700';
+                }
+                
+                // توقف خودکار در 12 ثانیه
+                if (currentTime >= 12) {
+                    stopTimer();
+                    timerMessage.innerHTML = '<span class="timer-fail">⏰ زمان تمام شد! دوباره تلاش کنید</span>';
                 }
             }, 100);
         }
 
-        // لغو تایمر
-        function cancelHoldTimer() {
-            if (holdTimer) {
-                clearInterval(holdTimer);
-                holdTimer = null;
+        // توقف تایمر
+        function stopTimer() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
             }
             
-            const holdButton = document.getElementById('holdButton');
-            const holdProgressBar = document.getElementById('holdProgressBar');
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
+            const timerMessage = document.getElementById('timerMessage');
+            
+            // فعال کردن دکمه شروع و غیرفعال کردن دکمه توقف
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            
+            // بررسی برنده شدن
+            if (Math.abs(currentTime - TARGET_TIME) <= 0.2) { // خطای 0.2 ثانیه
+                userWins();
+            } else {
+                const difference = Math.abs(currentTime - TARGET_TIME).toFixed(1);
+                if (currentTime < TARGET_TIME) {
+                    timerMessage.innerHTML = `<span class="timer-fail">❌ زود توقف کردید! ${difference} ثانیه زودتر</span>`;
+                } else {
+                    timerMessage.innerHTML = `<span class="timer-fail">❌ دیر توقف کردید! ${difference} ثانیه دیرتر</span>`;
+                }
+            }
+        }
+
+        // ریست تایمر
+        function resetTimer() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+            
+            const startButton = document.getElementById('startButton');
+            const stopButton = document.getElementById('stopButton');
             const timerDisplay = document.getElementById('timerDisplay');
+            const timerMessage = document.getElementById('timerMessage');
             
-            holdButton.classList.remove('holding');
-            holdProgressBar.style.width = '0%';
-            
-            if (holdTime > 0 && holdTime < HOLD_TARGET) {
-                timerDisplay.textContent = 'نتوانستید ۱۰ ثانیه نگه دارید! دوباره تلاش کنید';
-                timerDisplay.style.color = '#ff6b6b';
-                
-                // ریست کردن بعد از ۲ ثانیه
-                setTimeout(() => {
-                    timerDisplay.textContent = '';
-                    timerDisplay.style.color = '#FFD700';
-                }, 2000);
-            }
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            timerDisplay.textContent = '0.0';
+            timerDisplay.style.color = '#FFD700';
+            timerMessage.innerHTML = '';
+            currentTime = 0;
         }
 
         // کاربر برنده شد
         function userWins() {
             const winnerVpnCode = document.getElementById('winnerVpnCode');
-            const holdButton = document.getElementById('holdButton');
-            const timerDisplay = document.getElementById('timerDisplay');
+            const timerMessage = document.getElementById('timerMessage');
             
             // علامت‌گذاری کد به عنوان استفاده شده
             FREE_VPN_CODES[currentWinnerCode].used = true;
@@ -1268,10 +1384,8 @@
             // نمایش پاپ‌آپ برنده
             document.getElementById('winnerPopup').style.display = 'flex';
             
-            // ریست کردن دکمه
-            holdButton.classList.remove('holding');
-            timerDisplay.textContent = '۱۰ ثانیه کامل! 🎉';
-            timerDisplay.style.color = '#25D366';
+            // نمایش پیام موفقیت
+            timerMessage.innerHTML = '<span class="timer-success">🎉 عالی! در دقیقاً ۱۰ ثانیه توقف کردید</span>';
             
             // ذخیره در localStorage که کاربر نتواند دوباره با همین کد شرکت کند
             localStorage.setItem(`free_vpn_used_${currentWinnerCode}`, 'true');
@@ -1286,6 +1400,7 @@
 🎉 **برنده فیلترشکن رایگان**
 • کد فیلترشکن: ${vpnCode}
 • تاریخ برنده‌ای: ${new Date().toLocaleDateString('fa-IR')}
+• زمان توقف: ${currentTime.toFixed(1)} ثانیه
 
 لطفاً این کد را برای فعال‌سازی سرویس تأیید کنید.
 
@@ -1304,10 +1419,8 @@
             // ریست کردن فرم
             document.getElementById('freeVpnCode').value = '';
             document.getElementById('freeVpnMessage').innerHTML = '';
-            document.getElementById('holdSection').style.display = 'none';
-            document.getElementById('holdProgressBar').style.width = '0%';
-            document.getElementById('timerDisplay').textContent = '';
-            document.getElementById('timerDisplay').style.color = '#FFD700';
+            document.getElementById('timerSection').style.display = 'none';
+            resetTimer();
         }
 
         // بارگذاری وضعیت استفاده شده‌ها از localStorage
