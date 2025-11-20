@@ -514,8 +514,8 @@
         
         <!-- اطلاعات انقضا -->
         <div class="expiry-info">
-            <div>⏰ توجه: این کد فقط <strong>۱ دقیقه</strong> اعتبار دارد</div>
-            <div class="expiry-timer" id="expiryTimer">زمان باقی‌مانده: ۶۰ ثانیه</div>
+            <div>⏰ توجه: این کد فقط <strong>۴۰ ثانیه</strong> اعتبار دارد</div>
+            <div class="expiry-timer" id="expiryTimer">زمان باقی‌مانده: ۴۰ ثانیه</div>
         </div>
         
         <!-- بخش قوانین -->
@@ -526,7 +526,7 @@
                 <li>هدف توقف دقیق روی ۱۰ ثانیه است</li>
                 <li>فقط توقف دقیق روی ۱۰.۰۰ ثانیه برنده محسوب می‌شود</li>
                 <li>برندگان فیلترشکن ۳۰ گیگ رایگان دریافت می‌کنند</li>
-                <li>هر کد فقط ۱ دقیقه اعتبار دارد و یکبار قابل استفاده است</li>
+                <li>هر کد فقط ۴۰ ثانیه اعتبار دارد و یکبار قابل استفاده است</li>
             </ul>
         </div>
         
@@ -579,7 +579,7 @@
         let startTime = null;
         let elapsedTime = 0;
         let isRunning = false;
-        let timeLeft = 60; // 1 دقیقه
+        let timeLeft = 40; // ۴۰ ثانیه
 
         // بررسی اعتبار کد
         function validateCode() {
@@ -595,9 +595,26 @@
             
             // بررسی اینکه آیا این کد قبلاً استفاده شده
             const codeData = getCodeData(userCode);
-            if (codeData && codeData.used) {
-                disableContest('این کد قبلاً استفاده شده است');
-                return false;
+            if (codeData) {
+                // محاسبه زمان گذشته از ایجاد کد
+                const now = Date.now();
+                const codeCreatedAt = codeData.createdAt;
+                const timePassed = now - codeCreatedAt;
+                
+                // اگر ۴۰ ثانیه گذشته باشد، کد منقضی شده
+                if (timePassed > 40000) { // 40 ثانیه
+                    disableContest('این کد منقضی شده است');
+                    return false;
+                }
+                
+                // اگر قبلاً استفاده شده
+                if (codeData.used) {
+                    disableContest('این کد قبلاً استفاده شده است');
+                    return false;
+                }
+            } else {
+                // اگر کد جدید است، آن را ثبت کن
+                createCodeData(userCode);
             }
             
             // شروع تایمر انقضا
@@ -605,7 +622,7 @@
             return true;
         }
 
-        // شروع تایمر انقضای ۱ دقیقه‌ای
+        // شروع تایمر انقضای ۴۰ ثانیه‌ای
         function startExpiryTimer() {
             const expiryTimerElement = document.getElementById('expiryTimer');
             
@@ -616,6 +633,7 @@
                 // تغییر رنگ هنگام نزدیک شدن به انقضا
                 if (timeLeft <= 10) {
                     expiryTimerElement.style.color = '#ff6b6b';
+                    expiryTimerElement.style.animation = 'pulse 0.5s infinite';
                 }
                 
                 if (timeLeft <= 0) {
@@ -710,32 +728,39 @@
 
         // مدیریت داده‌های کد در localStorage
         function getCodeData(code) {
-            const data = localStorage.getItem(`contest_${code}`);
+            const data = localStorage.getItem(`contest_code_${code}`);
             return data ? JSON.parse(data) : null;
         }
 
-        function markCodeAsUsed() {
+        function createCodeData(code) {
             const codeData = {
-                used: true,
-                usedAt: new Date().toISOString(),
-                userCode: userCode
+                code: code,
+                createdAt: Date.now(),
+                used: false,
+                expired: false
             };
-            localStorage.setItem(`contest_${userCode}`, JSON.stringify(codeData));
+            localStorage.setItem(`contest_code_${code}`, JSON.stringify(codeData));
+        }
+
+        function markCodeAsUsed() {
+            const codeData = getCodeData(userCode) || {};
+            codeData.used = true;
+            codeData.usedAt = Date.now();
+            localStorage.setItem(`contest_code_${userCode}`, JSON.stringify(codeData));
         }
 
         function markCodeAsExpired() {
-            const codeData = {
-                expired: true,
-                expiredAt: new Date().toISOString(),
-                userCode: userCode
-            };
-            localStorage.setItem(`contest_${userCode}`, JSON.stringify(codeData));
+            const codeData = getCodeData(userCode) || {};
+            codeData.expired = true;
+            codeData.expiredAt = Date.now();
+            localStorage.setItem(`contest_code_${userCode}`, JSON.stringify(codeData));
         }
 
         // غیرفعال کردن مسابقه
         function disableContest(message) {
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = true;
+            document.getElementById('expiry-info').style.display = 'none';
             document.getElementById('contestResult').innerHTML = 
                 `<div class="contest-fail">${message}</div>`;
         }
@@ -777,6 +802,10 @@
                         transform: translateY(100vh) rotate(360deg);
                         opacity: 0;
                     }
+                }
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.5; }
                 }
             `;
             document.head.appendChild(style);
