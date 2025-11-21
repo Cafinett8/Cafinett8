@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* دقیقاً همون استایل‌های کد اول شما */
         * {
             margin: 0;
             padding: 0;
@@ -23,141 +24,6 @@
             overflow-x: hidden;
         }
         
-        /* استایل‌ها مشابه کد قبلی */
-        .admin-panel {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-        
-        .admin-toggle {
-            background: linear-gradient(135deg, #ff6b6b, #ff4757);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .admin-section {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            border: 3px solid #25D366;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1001;
-        }
-        
-        .admin-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-        }
-        
-        .login-section {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .login-input {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 2px solid #25D366;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        .admin-input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        
-        .admin-btn {
-            background: linear-gradient(135deg, #25D366, #1ea952);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin: 5px;
-            font-weight: bold;
-            width: 100%;
-        }
-        
-        .code-list {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 10px 0;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .code-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 8px 12px;
-            margin: 5px 0;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .delete-code {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        
-        .close-admin {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .admin-title {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #25D366;
-            font-size: 1.5rem;
-        }
-        
         .contest-container {
             max-width: 800px;
             margin: 0 auto;
@@ -170,6 +36,7 @@
             text-align: center;
         }
         
+        /* بقیه استایل‌ها دقیقاً مثل کد اول شما */
         .contest-header {
             margin-bottom: 40px;
         }
@@ -317,60 +184,10 @@
             .contest-header h1 { font-size: 2.2rem; }
             .contest-icon { font-size: 4rem; }
             .contest-btn { padding: 15px 30px; font-size: 1.2rem; }
-            .admin-toggle { padding: 10px 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
-    <!-- پنل مدیریت -->
-    <div class="admin-panel">
-        <button class="admin-toggle" onclick="toggleAdminPanel()">
-            🛠️ مدیریت کدها
-        </button>
-    </div>
-    
-    <div class="admin-overlay" id="adminOverlay" onclick="closeAdminPanel()"></div>
-    
-    <div class="admin-section" id="adminSection">
-        <button class="close-admin" onclick="closeAdminPanel()">✕</button>
-        
-        <div id="loginSection" class="login-section">
-            <div class="admin-title">🔐 ورود به پنل مدیریت</div>
-            <input type="password" class="login-input" id="adminPassword" placeholder="رمز عبور مدیریت" autocomplete="off">
-            <button class="admin-btn" onclick="loginToAdmin()">🚪 ورود به پنل</button>
-        </div>
-        
-        <div id="adminContent" style="display: none;">
-            <div class="admin-title">🛠️ پنل مدیریت کدها</div>
-            
-            <div>
-                <input type="text" class="admin-input" id="newCodeInput" placeholder="کد جدید (مثال: MYCODE123)">
-                <button class="admin-btn" onclick="addNewCode()">➕ افزودن کد</button>
-            </div>
-            
-            <div>
-                <input type="number" class="admin-input" id="expiryTimeInput" placeholder="زمان انقضا (ثانیه)" value="20">
-                <button class="admin-btn" onclick="updateExpiryTime()">⏰ بروزرسانی زمان</button>
-            </div>
-            
-            <div class="code-list" id="codeList">
-                <!-- لیست کدها اینجا نمایش داده می‌شود -->
-            </div>
-            
-            <div>
-                <button class="admin-btn" onclick="generateRandomCodes()">🎲 تولید کدهای تصادفی</button>
-                <button class="admin-btn" onclick="clearAllCodes()">🗑️ حذف همه کدها</button>
-                <button class="admin-btn" onclick="exportCodes()">📤 خروجی کدها</button>
-            </div>
-            
-            <div style="margin-top: 20px; text-align: center;">
-                <button class="admin-btn" onclick="logoutAdmin()" style="background: linear-gradient(135deg, #ff6b6b, #ff4757);">
-                    🚪 خروج از پنل
-                </button>
-            </div>
-        </div>
-    </div>
-
     <div class="contest-container">
         <div class="contest-header">
             <div class="contest-icon">🏆</div>
@@ -402,62 +219,12 @@
     </div>
 
     <script>
-        // سیستم مدیریت کدها با استفاده از localStorage ساده
-        // برای راه‌حل پیشرفته‌تر باید از سرور یا Firebase استفاده کرد
-        const CONTEST_STORAGE_KEY = 'vpn_contest_system_shared';
-        const ADMIN_PASSWORD = "123456";
-
-        // داده‌های پیش‌فرض
-        const defaultContestData = {
-            codes: [
-                { code: 'TEST123', created: Date.now(), used: false },
-                { code: 'WELCOME2024', created: Date.now(), used: false },
-                { code: 'FREEVPN', created: Date.now(), used: false }
-            ],
-            expiryTime: 20, // 20 ثانیه
-            settings: {
-                version: 'shared',
-                created: new Date().toISOString()
-            }
-        };
-
-        // دریافت داده‌ها از localStorage
-        function getContestData() {
-            try {
-                const data = localStorage.getItem(CONTEST_STORAGE_KEY);
-                if (!data) {
-                    saveContestData(defaultContestData);
-                    return defaultContestData;
-                }
-                const parsedData = JSON.parse(data);
-                
-                // پاکسازی کدهای منقضی شده
-                const now = Date.now();
-                const validCodes = parsedData.codes.filter(item => 
-                    !item.used && (now - item.created) < (parsedData.expiryTime * 1000)
-                );
-                
-                if (validCodes.length !== parsedData.codes.length) {
-                    parsedData.codes = validCodes;
-                    saveContestData(parsedData);
-                }
-                
-                return parsedData;
-            } catch (error) {
-                console.error('خطا در خواندن داده‌ها:', error);
-                return defaultContestData;
-            }
-        }
-
-        // ذخیره داده‌ها در localStorage
-        function saveContestData(data) {
-            try {
-                localStorage.setItem(CONTEST_STORAGE_KEY, JSON.stringify(data));
-            } catch (error) {
-                console.error('خطا در ذخیره داده‌ها:', error);
-            }
-        }
-
+        // سیستم مدیریت کدها - شبیه کد اول شما اما ساده‌تر
+        const CONTEST_STORAGE_KEY = 'vpn_contest_used_codes';
+        
+        // کدهای معتبر
+        const validCodes = ['VPN123', 'FREE2024', 'TESTCODE', 'WELCOME', 'SPECIAL123'];
+        
         // دریافت کد از URL
         const urlParams = new URLSearchParams(window.location.search);
         const userCode = urlParams.get('code');
@@ -471,159 +238,9 @@
         let startTime = null;
         let elapsedTime = 0;
         let isRunning = false;
-        let contestData = getContestData();
-        let timeLeft = contestData.expiryTime;
+        let timeLeft = 20;
 
-        // توابع مدیریت پنل ادمین
-        function toggleAdminPanel() {
-            const adminSection = document.getElementById('adminSection');
-            const adminOverlay = document.getElementById('adminOverlay');
-            
-            adminSection.style.display = 'block';
-            adminOverlay.style.display = 'block';
-            
-            document.getElementById('loginSection').style.display = 'block';
-            document.getElementById('adminContent').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function closeAdminPanel() {
-            document.getElementById('adminSection').style.display = 'none';
-            document.getElementById('adminOverlay').style.display = 'none';
-        }
-
-        function loginToAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            
-            if (password === ADMIN_PASSWORD) {
-                document.getElementById('loginSection').style.display = 'none';
-                document.getElementById('adminContent').style.display = 'block';
-                updateCodeList();
-                document.getElementById('expiryTimeInput').value = contestData.expiryTime;
-            } else {
-                alert('❌ رمز عبور اشتباه است!');
-                document.getElementById('adminPassword').value = '';
-                document.getElementById('adminPassword').focus();
-            }
-        }
-
-        function logoutAdmin() {
-            document.getElementById('loginSection').style.display = 'block';
-            document.getElementById('adminContent').style.display = 'none';
-            document.getElementById('adminPassword').value = '';
-        }
-
-        function addNewCode() {
-            const newCode = document.getElementById('newCodeInput').value.trim().toUpperCase();
-            if (newCode) {
-                const existingCode = contestData.codes.find(item => item.code === newCode);
-                if (!existingCode) {
-                    contestData.codes.push({
-                        code: newCode,
-                        created: Date.now(),
-                        used: false
-                    });
-                    saveContestData(contestData);
-                    updateCodeList();
-                    document.getElementById('newCodeInput').value = '';
-                    alert('✅ کد با موفقیت اضافه شد');
-                } else {
-                    alert('❌ کد تکراری است');
-                }
-            } else {
-                alert('❌ لطفا یک کد معتبر وارد کنید');
-            }
-        }
-
-        function updateExpiryTime() {
-            const newTime = parseInt(document.getElementById('expiryTimeInput').value);
-            if (newTime > 0) {
-                contestData.expiryTime = newTime;
-                saveContestData(contestData);
-                timeLeft = contestData.expiryTime;
-                document.getElementById('expiryTimer').textContent = `${contestData.expiryTime} ثانیه`;
-                alert('✅ زمان انقضا بروزرسانی شد');
-            }
-        }
-
-        function deleteCode(code) {
-            contestData.codes = contestData.codes.filter(item => item.code !== code);
-            saveContestData(contestData);
-            updateCodeList();
-        }
-
-        function generateRandomCodes() {
-            const count = 10;
-            for (let i = 0; i < count; i++) {
-                const randomCode = 'CODE' + Math.random().toString(36).substr(2, 6).toUpperCase();
-                const existingCode = contestData.codes.find(item => item.code === randomCode);
-                if (!existingCode) {
-                    contestData.codes.push({
-                        code: randomCode,
-                        created: Date.now(),
-                        used: false
-                    });
-                }
-            }
-            saveContestData(contestData);
-            updateCodeList();
-            alert(`✅ ${count} کد تصادفی تولید شد`);
-        }
-
-        function clearAllCodes() {
-            if (confirm('⚠️ آیا از حذف همه کدها مطمئنید؟')) {
-                contestData.codes = [];
-                saveContestData(contestData);
-                updateCodeList();
-                alert('✅ همه کدها حذف شدند');
-            }
-        }
-
-        function exportCodes() {
-            const activeCodes = contestData.codes
-                .filter(item => !item.used)
-                .map(item => item.code)
-                .join('\n');
-            
-            const usedCodes = contestData.codes
-                .filter(item => item.used)
-                .map(item => item.code)
-                .join('\n');
-                
-            const codesText = `کدهای فعال:\n${activeCodes}\n\nکدهای استفاده شده:\n${usedCodes}`;
-            
-            const blob = new Blob([codesText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'contest_codes_report.txt';
-            a.click();
-            URL.revokeObjectURL(url);
-            alert('✅ گزارش کدها با موفقیت export شد');
-        }
-
-        function updateCodeList() {
-            const codeList = document.getElementById('codeList');
-            const now = Date.now();
-            
-            codeList.innerHTML = contestData.codes.map(item => {
-                const timeRemaining = Math.max(0, contestData.expiryTime - Math.floor((now - item.created) / 1000));
-                const isExpired = timeRemaining <= 0;
-                const status = item.used ? '🔴 استفاده شده' : (isExpired ? '⚫ منقضی شده' : `🟢 فعال (${timeRemaining}ثانیه)`);
-                
-                return `
-                    <div class="code-item">
-                        <div>
-                            <span>${item.code}</span>
-                            <small style="color: ${item.used ? '#ff6b6b' : (isExpired ? '#888' : '#25D366')}">${status}</small>
-                        </div>
-                        <button class="delete-code" onclick="deleteCode('${item.code}')">🗑️</button>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // سیستم اعتبارسنجی کد
+        // بررسی اعتبار کد
         function validateCode() {
             if (!userCode) {
                 disableContest('کد مسابقه نامعتبر است');
@@ -631,17 +248,17 @@
             }
             
             const upperCode = userCode.toUpperCase();
-            const now = Date.now();
             
-            // پیدا کردن کد در لیست
-            const codeItem = contestData.codes.find(item => 
-                item.code === upperCode && 
-                !item.used && 
-                (now - item.created) < (contestData.expiryTime * 1000)
-            );
+            // بررسی وجود کد در لیست کدهای معتبر
+            if (!validCodes.includes(upperCode)) {
+                disableContest('کد مسابقه نامعتبر است');
+                return false;
+            }
             
-            if (!codeItem) {
-                disableContest('کد مسابقه نامعتبر است یا منقضی شده');
+            // بررسی اینکه آیا کد قبلاً استفاده شده
+            const usedCodes = getUsedCodes();
+            if (usedCodes.includes(upperCode)) {
+                disableContest('این کد قبلاً استفاده شده است');
                 return false;
             }
             
@@ -649,9 +266,25 @@
             return true;
         }
 
+        function getUsedCodes() {
+            const used = localStorage.getItem(CONTEST_STORAGE_KEY);
+            return used ? JSON.parse(used) : [];
+        }
+
+        function markCodeAsUsed() {
+            if (userCode) {
+                const upperCode = userCode.toUpperCase();
+                const usedCodes = getUsedCodes();
+                if (!usedCodes.includes(upperCode)) {
+                    usedCodes.push(upperCode);
+                    localStorage.setItem(CONTEST_STORAGE_KEY, JSON.stringify(usedCodes));
+                }
+            }
+        }
+
         function startExpiryTimer() {
             const expiryTimerElement = document.getElementById('expiryTimer');
-            timeLeft = contestData.expiryTime;
+            timeLeft = 20;
             
             expiryTimer = setInterval(() => {
                 timeLeft--;
@@ -677,15 +310,7 @@
             document.getElementById('contestResult').innerHTML = 
                 '<div class="contest-fail">⏰ کد منقضی شد! زمان شما به پایان رسید.</div>';
             
-            // علامت‌گذاری کد به عنوان استفاده شده
-            if (userCode) {
-                const upperCode = userCode.toUpperCase();
-                const codeIndex = contestData.codes.findIndex(item => item.code === upperCode);
-                if (codeIndex !== -1) {
-                    contestData.codes[codeIndex].used = true;
-                    saveContestData(contestData);
-                }
-            }
+            markCodeAsUsed();
         }
 
         function startTimer() {
@@ -731,18 +356,6 @@
             clearInterval(expiryTimer);
         }
 
-        function markCodeAsUsed() {
-            if (userCode) {
-                const upperCode = userCode.toUpperCase();
-                const codeIndex = contestData.codes.findIndex(item => item.code === upperCode);
-                if (codeIndex !== -1) {
-                    contestData.codes[codeIndex].used = true;
-                    saveContestData(contestData);
-                    updateCodeList();
-                }
-            }
-        }
-
         function disableContest(message) {
             document.getElementById('startBtn').disabled = true;
             document.getElementById('stopBtn').disabled = true;
@@ -753,13 +366,6 @@
         // راه‌اندازی اولیه
         document.addEventListener('DOMContentLoaded', function() {
             validateCode();
-            document.getElementById('expiryTimer').textContent = `${contestData.expiryTime} ثانیه`;
-            
-            // به‌روزرسانی دوره‌ای لیست کدها
-            setInterval(() => {
-                contestData = getContestData();
-                updateCodeList();
-            }, 5000); // هر 5 ثانیه
         });
     </script>
 </body>
